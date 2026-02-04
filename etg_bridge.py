@@ -81,6 +81,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Port check: external {ext} / local {loc}",
+        "q_vps_title": "Is this a VPS?",
+        "q_vps_desc": "VPS is a public server with its own external IP.",
+        "q_public_title": "Do you have a public (external) IP?",
+        "q_public_desc": "External IP is what you see on sites like 2ip/ifconfig. Without it you need the same LAN.",
+        "q_device_title": "Is your userbot on the same device?",
+        "q_device_desc": "If not, it will work only within the same local network.",
+        "btn_yes": "✅ Yes",
+        "btn_no": "❌ No",
+        "btn_same_device": "✅ Same device",
+        "btn_other_device": "📡 Another device",
+        "sudo_request_title": "Sudo password required",
+        "sudo_request_desc": "Open `.cfg EtgBridge` and fill `sudo_password`. After you enter it, install continues.",
+        "sudo_wrong_password": "Wrong sudo password. Try again.",
+        "install_paused": "Waiting for sudo password...",
+        "contact_hint": "Need help? @etopizdesblin",
+        "warning_local_same": "Local mode: works only in the same network.",
+        "warning_local_other": "Local mode: server and client must be in the same LAN.",
+        "warning_vpn": "Disable VPN/Proxy while using ETG API (they can change IP).",
+        "etgtest_hint": "Run `.etgtest` to check access from plugin side.",
+        "port_forward_hint": "Port forwarding is required on your router.",
     },
     "ru": {
         "choose_lang_title": "Выберите язык установки",
@@ -117,6 +137,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Проверка порта: внешний {ext} / локальный {loc}",
+        "q_vps_title": "У вас VPS?",
+        "q_vps_desc": "VPS — это сервер с внешним IP.",
+        "q_public_title": "У вас есть внешний IP?",
+        "q_public_desc": "Внешний IP — как на сайтах 2ip/ifconfig. Без него нужна одна сеть.",
+        "q_device_title": "Юзербот на этом же устройстве?",
+        "q_device_desc": "Если нет — всё будет работать только в одной сети.",
+        "btn_yes": "✅ Да",
+        "btn_no": "❌ Нет",
+        "btn_same_device": "✅ На этом",
+        "btn_other_device": "📡 На другом",
+        "sudo_request_title": "Нужен пароль sudo",
+        "sudo_request_desc": "Открой `.cfg EtgBridge` и заполни `sudo_password`. После ввода установка продолжится.",
+        "sudo_wrong_password": "Пароль sudo неверный. Попробуйте снова.",
+        "install_paused": "Ожидаю пароль sudo...",
+        "contact_hint": "Нужна помощь? @etopizdesblin",
+        "warning_local_same": "Локальный режим: работает только в одной сети.",
+        "warning_local_other": "Локальный режим: сервер и клиент должны быть в одной сети.",
+        "warning_vpn": "Выключите VPN/Proxy при работе с ETG API (они меняют IP).",
+        "etgtest_hint": "Запусти `.etgtest` для проверки доступа со стороны плагина.",
+        "port_forward_hint": "Нужен проброс порта на роутере.",
     },
     "be": {
         "choose_lang_title": "Абярыце мову ўстаноўкі",
@@ -153,6 +193,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Праверка порта: знешні {ext} / лакальны {loc}",
+        "q_vps_title": "У вас VPS?",
+        "q_vps_desc": "VPS — сервер з вонкавым IP.",
+        "q_public_title": "Ёсць знешні IP?",
+        "q_public_desc": "Знешні IP — як на 2ip/ifconfig. Без яго патрэбна адна сетка.",
+        "q_device_title": "Юзербот на гэтым жа прыладзе?",
+        "q_device_desc": "Калі не — будзе працаваць толькі ў адной сетцы.",
+        "btn_yes": "✅ Так",
+        "btn_no": "❌ Не",
+        "btn_same_device": "✅ На гэтым",
+        "btn_other_device": "📡 На іншым",
+        "sudo_request_title": "Патрэбны пароль sudo",
+        "sudo_request_desc": "Адкрый `.cfg EtgBridge` і запоўні `sudo_password`. Пасля ўводу ўстаноўка працягнецца.",
+        "sudo_wrong_password": "Няправільны пароль sudo. Паспрабуйце зноў.",
+        "install_paused": "Чакаю пароль sudo...",
+        "contact_hint": "Патрэбна дапамога? @etopizdesblin",
+        "warning_local_same": "Лакальны рэжым: працуе толькі ў адной сетцы.",
+        "warning_local_other": "Лакальны рэжым: сервер і кліент павінны быць у адной сетцы.",
+        "warning_vpn": "Адключыце VPN/Proxy пры працы з ETG API (могуць змяняць IP).",
+        "etgtest_hint": "Запусціце `.etgtest` для праверкі доступу з боку плагіна.",
+        "port_forward_hint": "Патрэбны пракід порта на роутары.",
     },
     "uk": {
         "choose_lang_title": "Оберіть мову встановлення",
@@ -189,6 +249,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Перевірка порту: зовнішній {ext} / локальний {loc}",
+        "q_vps_title": "У вас VPS?",
+        "q_vps_desc": "VPS — сервер із зовнішнім IP.",
+        "q_public_title": "Є зовнішній IP?",
+        "q_public_desc": "Зовнішній IP — як на 2ip/ifconfig. Без нього потрібна одна мережа.",
+        "q_device_title": "Юзербот на цьому ж пристрої?",
+        "q_device_desc": "Якщо ні — працюватиме тільки в одній мережі.",
+        "btn_yes": "✅ Так",
+        "btn_no": "❌ Ні",
+        "btn_same_device": "✅ На цьому",
+        "btn_other_device": "📡 На іншому",
+        "sudo_request_title": "Потрібен пароль sudo",
+        "sudo_request_desc": "Відкрий `.cfg EtgBridge` і заповни `sudo_password`. Після вводу встановлення продовжиться.",
+        "sudo_wrong_password": "Невірний пароль sudo. Спробуйте ще раз.",
+        "install_paused": "Очікую пароль sudo...",
+        "contact_hint": "Потрібна допомога? @etopizdesblin",
+        "warning_local_same": "Локальний режим: працює лише в одній мережі.",
+        "warning_local_other": "Локальний режим: сервер і клієнт мають бути в одній мережі.",
+        "warning_vpn": "Вимкніть VPN/Proxy під час роботи з ETG API (можуть змінювати IP).",
+        "etgtest_hint": "Запусти `.etgtest` для перевірки доступу з боку плагіна.",
+        "port_forward_hint": "Потрібен проброс порту на роутері.",
     },
     "kk": {
         "choose_lang_title": "Орнату тілін таңдаңыз",
@@ -225,6 +305,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Порт тексеруі: сыртқы {ext} / жергілікті {loc}",
+        "q_vps_title": "Сізде VPS бар ма?",
+        "q_vps_desc": "VPS — сыртқы IP бар сервер.",
+        "q_public_title": "Сыртқы IP бар ма?",
+        "q_public_desc": "Сыртқы IP — 2ip/ifconfig сияқты сайттардағы адрес. Онсыз бір желі керек.",
+        "q_device_title": "Юзербот осы құрылғыда ма?",
+        "q_device_desc": "Жоқ болса — тек бір желі ішінде жұмыс істейді.",
+        "btn_yes": "✅ Иә",
+        "btn_no": "❌ Жоқ",
+        "btn_same_device": "✅ Осы құрылғы",
+        "btn_other_device": "📡 Басқа құрылғы",
+        "sudo_request_title": "sudo паролі керек",
+        "sudo_request_desc": "`.cfg EtgBridge` ашып, `sudo_password` толтырыңыз. Енгізгеннен кейін орнату жалғасады.",
+        "sudo_wrong_password": "sudo паролі қате. Қайта енгізіңіз.",
+        "install_paused": "sudo паролін күтіп тұрмын...",
+        "contact_hint": "Көмек керек пе? @etopizdesblin",
+        "warning_local_same": "Жергілікті режим: тек бір желіде жұмыс істейді.",
+        "warning_local_other": "Жергілікті режим: сервер мен клиент бір желіде болуы керек.",
+        "warning_vpn": "ETG API қолданғанда VPN/Proxy өшіріңіз (IP өзгеруі мүмкін).",
+        "etgtest_hint": "Плагин жағынан тексеру үшін `.etgtest` іске қосыңыз.",
+        "port_forward_hint": "Маршрутизаторда портты бағыттау қажет.",
     },
     "fr": {
         "choose_lang_title": "Choisissez la langue d'installation",
@@ -261,6 +361,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Test du port : externe {ext} / local {loc}",
+        "q_vps_title": "Vous avez un VPS ?",
+        "q_vps_desc": "Un VPS est un serveur public avec une IP externe.",
+        "q_public_title": "Avez-vous une IP publique ?",
+        "q_public_desc": "IP publique = celle affichée sur 2ip/ifconfig. Sans elle, même LAN requis.",
+        "q_device_title": "Le userbot est sur le même appareil ?",
+        "q_device_desc": "Sinon, ça marche uniquement dans le même réseau local.",
+        "btn_yes": "✅ Oui",
+        "btn_no": "❌ Non",
+        "btn_same_device": "✅ Même appareil",
+        "btn_other_device": "📡 Autre appareil",
+        "sudo_request_title": "Mot de passe sudo requis",
+        "sudo_request_desc": "Ouvrez `.cfg EtgBridge` et remplissez `sudo_password`. L'installation continuera ensuite.",
+        "sudo_wrong_password": "Mot de passe sudo incorrect. Réessayez.",
+        "install_paused": "En attente du mot de passe sudo...",
+        "contact_hint": "Besoin d'aide ? @etopizdesblin",
+        "warning_local_same": "Mode local : fonctionne uniquement dans le même réseau.",
+        "warning_local_other": "Mode local : serveur et client doivent être dans le même réseau.",
+        "warning_vpn": "Désactivez VPN/Proxy lors de l'utilisation de l'API ETG (ils changent l'IP).",
+        "etgtest_hint": "Lancez `.etgtest` pour vérifier l'accès côté plugin.",
+        "port_forward_hint": "Redirection de port requise sur le routeur.",
     },
     "ja": {
         "choose_lang_title": "インストール言語を選択",
@@ -297,6 +417,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "ポート確認: 外部 {ext} / ローカル {loc}",
+        "q_vps_title": "VPSですか？",
+        "q_vps_desc": "VPSは外部IPを持つサーバーです。",
+        "q_public_title": "外部IPはありますか？",
+        "q_public_desc": "外部IPは2ip/ifconfigに表示されるIP。ない場合は同一LANが必要。",
+        "q_device_title": "ユーザーボットは同じ端末？",
+        "q_device_desc": "違う場合は同じLAN内でのみ動作します。",
+        "btn_yes": "✅ はい",
+        "btn_no": "❌ いいえ",
+        "btn_same_device": "✅ 同じ端末",
+        "btn_other_device": "📡 別端末",
+        "sudo_request_title": "sudoパスワードが必要",
+        "sudo_request_desc": "`.cfg EtgBridge`で`sudo_password`を入力。入力後にインストール再開。",
+        "sudo_wrong_password": "sudoパスワードが違います。再入力してください。",
+        "install_paused": "sudoパスワード待ち...",
+        "contact_hint": "ヘルプ: @etopizdesblin",
+        "warning_local_same": "ローカルモード: 同一LAN内のみ。",
+        "warning_local_other": "ローカルモード: サーバーとクライアントが同一LAN内。",
+        "warning_vpn": "ETG API使用時はVPN/Proxyをオフにしてください。",
+        "etgtest_hint": "プラグイン側の確認は `.etgtest`。",
+        "port_forward_hint": "ルーターでポート開放が必要。",
     },
     "zh": {
         "choose_lang_title": "选择安装语言",
@@ -333,6 +473,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "端口检查：外网 {ext} / 本地 {loc}",
+        "q_vps_title": "你用的是VPS吗？",
+        "q_vps_desc": "VPS是带外网IP的服务器。",
+        "q_public_title": "有公网IP吗？",
+        "q_public_desc": "公网IP可在2ip/ifconfig看到。没有则需同一局域网。",
+        "q_device_title": "用户机器人在同一设备吗？",
+        "q_device_desc": "否则仅同一局域网可用。",
+        "btn_yes": "✅ 是",
+        "btn_no": "❌ 否",
+        "btn_same_device": "✅ 同一设备",
+        "btn_other_device": "📡 其他设备",
+        "sudo_request_title": "需要sudo密码",
+        "sudo_request_desc": "打开`.cfg EtgBridge`填写`sudo_password`，填写后继续安装。",
+        "sudo_wrong_password": "sudo密码错误，请重试。",
+        "install_paused": "等待sudo密码...",
+        "contact_hint": "需要帮助？@etopizdesblin",
+        "warning_local_same": "本地模式：仅同一网络可用。",
+        "warning_local_other": "本地模式：服务器和客户端需同一局域网。",
+        "warning_vpn": "使用ETG API时请关闭VPN/代理（可能改变IP）。",
+        "etgtest_hint": "运行`.etgtest`检查插件侧访问。",
+        "port_forward_hint": "需要在路由器上做端口映射。",
     },
     "ko": {
         "choose_lang_title": "설치 언어 선택",
@@ -369,6 +529,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "포트 체크: 외부 {ext} / 로컬 {loc}",
+        "q_vps_title": "VPS인가요?",
+        "q_vps_desc": "VPS는 외부 IP가 있는 서버입니다.",
+        "q_public_title": "외부 IP가 있나요?",
+        "q_public_desc": "외부 IP는 2ip/ifconfig에 보이는 IP입니다. 없으면 같은 LAN 필요.",
+        "q_device_title": "유저봇이 같은 기기인가요?",
+        "q_device_desc": "아니면 같은 로컬 네트워크에서만 동작합니다.",
+        "btn_yes": "✅ 예",
+        "btn_no": "❌ 아니오",
+        "btn_same_device": "✅ 같은 기기",
+        "btn_other_device": "📡 다른 기기",
+        "sudo_request_title": "sudo 비밀번호 필요",
+        "sudo_request_desc": "`.cfg EtgBridge`에서 `sudo_password` 입력. 입력 후 설치 계속.",
+        "sudo_wrong_password": "sudo 비밀번호가 잘못되었습니다. 다시 입력하세요.",
+        "install_paused": "sudo 비밀번호 대기...",
+        "contact_hint": "도움: @etopizdesblin",
+        "warning_local_same": "로컬 모드: 동일 네트워크에서만.",
+        "warning_local_other": "로컬 모드: 서버와 클라이언트가 동일 LAN이어야 합니다.",
+        "warning_vpn": "ETG API 사용 시 VPN/Proxy 끄기.",
+        "etgtest_hint": "`.etgtest`로 플러그인 측 확인.",
+        "port_forward_hint": "라우터에서 포트 포워딩 필요.",
     },
     "kp": {
         "choose_lang_title": "설치 언어 선택",
@@ -405,6 +585,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "포트 체크: 외부 {ext} / 로컬 {loc}",
+        "q_vps_title": "VPS입니까?",
+        "q_vps_desc": "VPS는 외부 IP가 있는 서버입니다.",
+        "q_public_title": "외부 IP가 있습니까?",
+        "q_public_desc": "외부 IP는 2ip/ifconfig에 보이는 IP입니다. 없으면 같은 LAN 필요.",
+        "q_device_title": "유저봇이 같은 기기입니까?",
+        "q_device_desc": "아니면 같은 로컬 네트워크에서만 동작합니다.",
+        "btn_yes": "✅ 예",
+        "btn_no": "❌ 아니오",
+        "btn_same_device": "✅ 같은 기기",
+        "btn_other_device": "📡 다른 기기",
+        "sudo_request_title": "sudo 비밀번호 필요",
+        "sudo_request_desc": "`.cfg EtgBridge`에서 `sudo_password` 입력. 입력 후 설치 계속.",
+        "sudo_wrong_password": "sudo 비밀번호가 틀렸습니다. 다시 입력하세요.",
+        "install_paused": "sudo 비밀번호 대기...",
+        "contact_hint": "도움: @etopizdesblin",
+        "warning_local_same": "로컬 모드: 동일 네트워크에서만.",
+        "warning_local_other": "로컬 모드: 서버와 클라이언트가 동일 LAN이어야 합니다.",
+        "warning_vpn": "ETG API 사용 시 VPN/Proxy 끄기.",
+        "etgtest_hint": "`.etgtest`로 플러그인 측 확인.",
+        "port_forward_hint": "라우터에서 포트 포워딩 필요.",
     },
     "pir_ru": {
         "choose_lang_title": "Выбери язык, йо-хо-хо",
@@ -441,6 +641,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Чек порта: внешний {ext} / локальный {loc}",
+        "q_vps_title": "У тебя VPS, капитан?",
+        "q_vps_desc": "VPS — сервер с внешним IP.",
+        "q_public_title": "Есть внешний IP, моряк?",
+        "q_public_desc": "Внешний IP — на 2ip/ifconfig. Нет — нужна одна сеть.",
+        "q_device_title": "Юзербот на этом же корыте?",
+        "q_device_desc": "Если нет — работает только в одной сети.",
+        "btn_yes": "✅ Да, капитан",
+        "btn_no": "❌ Нет, капитан",
+        "btn_same_device": "✅ На этом",
+        "btn_other_device": "📡 На другом",
+        "sudo_request_title": "Нужен пароль sudo",
+        "sudo_request_desc": "Открой `.cfg EtgBridge` и вбей `sudo_password`. Потом продолжим.",
+        "sudo_wrong_password": "Пароль sudo неверный. Еще раз.",
+        "install_paused": "Ждём пароль sudo...",
+        "contact_hint": "Нужна помощь? @etopizdesblin",
+        "warning_local_same": "Локальный режим: только одна сеть.",
+        "warning_local_other": "Локальный режим: сервер и клиент в одной сети.",
+        "warning_vpn": "Выруби VPN/Proxy, они меняют IP.",
+        "etgtest_hint": "Запусти `.etgtest` для проверки.",
+        "port_forward_hint": "Нужен проброс порта на роутере.",
     },
     "pir_en": {
         "choose_lang_title": "Choose yer install tongue, matey",
@@ -477,6 +697,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Port check: external {ext} / local {loc}",
+        "q_vps_title": "Got a VPS, matey?",
+        "q_vps_desc": "VPS be a server with external IP.",
+        "q_public_title": "Got a public IP?",
+        "q_public_desc": "Public IP be what 2ip/ifconfig shows. If none, same LAN needed.",
+        "q_device_title": "Userbot on the same ship?",
+        "q_device_desc": "If not — only same LAN.",
+        "btn_yes": "✅ Aye",
+        "btn_no": "❌ Nay",
+        "btn_same_device": "✅ Same ship",
+        "btn_other_device": "📡 Other ship",
+        "sudo_request_title": "Need sudo password",
+        "sudo_request_desc": "Open `.cfg EtgBridge` and set `sudo_password`. Then we continue.",
+        "sudo_wrong_password": "Bad sudo password. Try again.",
+        "install_paused": "Waiting for sudo...",
+        "contact_hint": "Need help? @etopizdesblin",
+        "warning_local_same": "Local mode: same LAN only.",
+        "warning_local_other": "Local mode: server and client must be in same LAN.",
+        "warning_vpn": "Disable VPN/Proxy, they change IP.",
+        "etgtest_hint": "Run `.etgtest` to check.",
+        "port_forward_hint": "Port forwarding needed on router.",
     },
     "meme": {
         "choose_lang_title": "Выбери язык, мемчик",
@@ -513,6 +753,26 @@ _INSTALL_I18N = {
         "port_check_ok": "ok",
         "port_check_fail": "fail",
         "check_summary": "Чек порта: внешний {ext} / локальный {loc}",
+        "q_vps_title": "Это VPS?",
+        "q_vps_desc": "VPS = сервер с внешним IP.",
+        "q_public_title": "Есть внешний IP?",
+        "q_public_desc": "Внешний IP — как на 2ip/ifconfig. Без него только одна сеть.",
+        "q_device_title": "Юзербот на этом устройстве?",
+        "q_device_desc": "Если нет — только одна сеть.",
+        "btn_yes": "✅ Да",
+        "btn_no": "❌ Нет",
+        "btn_same_device": "✅ Этот девайс",
+        "btn_other_device": "📡 Другой девайс",
+        "sudo_request_title": "Нужен sudo пароль",
+        "sudo_request_desc": "Открой `.cfg EtgBridge` и впиши `sudo_password`. Потом всё продолжится.",
+        "sudo_wrong_password": "Пароль sudo мимо. Попробуй ещё.",
+        "install_paused": "Жду пароль sudo...",
+        "contact_hint": "Помощь: @etopizdesblin",
+        "warning_local_same": "Локалка: только одна сеть.",
+        "warning_local_other": "Локалка: сервер и клиент в одной сети.",
+        "warning_vpn": "Выключи VPN/Proxy, IP скачет.",
+        "etgtest_hint": "Жми `.etgtest` для проверки.",
+        "port_forward_hint": "Нужен проброс порта.",
     },
 }
 
@@ -860,6 +1120,17 @@ class EtgBridgeAPI:
             },
         )
 
+    def net_test(
+        self,
+        device_id: typing.Optional[str],
+        url: str = "",
+        timeout: int = 5,
+    ) -> typing.Optional[str]:
+        payload = {"timeout": int(timeout)}
+        if url:
+            payload["url"] = url
+        return self.send(device_id, "net_test", payload)
+
     def device_info(self, device_id: typing.Optional[str]) -> typing.Optional[str]:
         return self.send(device_id, "device_info", {})
 
@@ -1111,6 +1382,12 @@ class EtgBridgeMod(loader.Module):
                 validator=loader.validators.String(),
             ),
             loader.ConfigValue(
+                "sudo_password",
+                "",
+                "Sudo password (leave empty if not needed)",
+                validator=loader.validators.String(),
+            ),
+            loader.ConfigValue(
                 "device_timeout",
                 120,
                 "Seconds to consider device online",
@@ -1150,6 +1427,8 @@ class EtgBridgeMod(loader.Module):
         self._session = requests.Session()
         self._session.trust_env = False
         self._setup_log: typing.Optional[typing.List[str]] = None
+        self._pending_install: typing.Optional[dict] = None
+        self._pending_task: typing.Optional[asyncio.Task] = None
         self.api = EtgBridgeAPI(self)
 
     async def client_ready(self):
@@ -1672,6 +1951,84 @@ class EtgBridgeMod(loader.Module):
         except Exception:
             return text
 
+    def _with_contact(self, lang: str, text: str) -> str:
+        contact = self._t(lang, "contact_hint")
+        return f"{text}\n{contact}" if contact else text
+
+    def _sudo_check_password(self, password: str, sudo_path: str) -> bool:
+        cmd = [sudo_path, "-S", "-k", "-p", "", "true"]
+        code, _out = self._exec_shell_input(cmd, f"{password}\n")
+        return code == 0
+
+    def _get_sudo_ctx(self) -> dict:
+        ctx = {
+            "use_sudo": False,
+            "is_root": False,
+            "sudo_available": False,
+            "sudo_path": "",
+            "needs_password": False,
+            "password": "",
+            "password_invalid": False,
+        }
+        if self._is_windows():
+            return ctx
+        try:
+            if hasattr(os, "geteuid") and os.geteuid() == 0:
+                ctx["is_root"] = True
+                return ctx
+        except Exception:
+            pass
+        sudo_path = shutil.which("sudo") or ""
+        if not sudo_path:
+            return ctx
+        ctx["sudo_available"] = True
+        ctx["use_sudo"] = True
+        ctx["sudo_path"] = sudo_path
+        code, out = self._exec_shell([sudo_path, "-n", "true"])
+        if code == 0:
+            return ctx
+        ctx["needs_password"] = True
+        password = (self.config["sudo_password"] or "").strip()
+        if not password:
+            return ctx
+        if self._sudo_check_password(password, sudo_path):
+            ctx["password"] = password
+            return ctx
+        ctx["password_invalid"] = True
+        return ctx
+
+    def _exec_cmd(
+        self,
+        args: typing.List[str],
+        ctx: dict,
+        use_sudo: bool,
+        logs: typing.List[str],
+        label: str,
+    ) -> typing.Tuple[int, str]:
+        if use_sudo and ctx.get("use_sudo"):
+            sudo_path = ctx.get("sudo_path") or "sudo"
+            password = ctx.get("password") or ""
+            if password:
+                cmd = [sudo_path, "-S", "-k", "-p", ""] + args
+                return self._exec_shell_input(cmd, f"{password}\n")
+            cmd = [sudo_path, "-n"] + args
+            return self._exec_shell(cmd)
+        return self._exec_shell(args)
+
+    async def _prompt_sudo_password(
+        self,
+        chat_id: int,
+        lang: str,
+        wrong: bool = False,
+    ) -> None:
+        await self._client.send_message(chat_id, ".cfg EtgBridge")
+        title = self._t(lang, "sudo_request_title")
+        desc = self._t(lang, "sudo_request_desc")
+        if wrong:
+            desc = f"{self._t(lang, 'sudo_wrong_password')}\n{desc}"
+        text = f"{title}\n{desc}"
+        await self._client.send_message(chat_id, text)
+
     def _build_lang_keyboard(
         self,
         port: int,
@@ -1700,6 +2057,24 @@ class EtgBridgeMod(loader.Module):
         try:
             result = subprocess.run(
                 args,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=False,
+            )
+            return result.returncode, (result.stdout or "").strip()
+        except Exception as exc:
+            return 1, str(exc)
+
+    @staticmethod
+    def _exec_shell_input(
+        args: typing.List[str],
+        input_text: str,
+    ) -> typing.Tuple[int, str]:
+        try:
+            result = subprocess.run(
+                args,
+                input=input_text,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
@@ -1864,11 +2239,14 @@ class EtgBridgeMod(loader.Module):
             return None
         return [sudo, "-n"] + args
 
-    def _run_pkg_command(self, args: typing.List[str], logs: typing.List[str], label: str) -> bool:
-        cmd = self._sudo_command(args, logs)
-        if not cmd:
-            return False
-        code, out = self._exec_shell(cmd)
+    def _run_pkg_command(
+        self,
+        args: typing.List[str],
+        logs: typing.List[str],
+        label: str,
+        sudo_ctx: dict,
+    ) -> bool:
+        code, out = self._exec_cmd(args, sudo_ctx, True, logs, label)
         if code == 0:
             logs.append(f"{label}: ok")
             return True
@@ -1879,7 +2257,7 @@ class EtgBridgeMod(loader.Module):
         logs.append(f"{label}: {out}")
         return False
 
-    def _install_ufw(self, logs: typing.List[str]) -> bool:
+    def _install_ufw(self, logs: typing.List[str], sudo_ctx: dict) -> bool:
         if shutil.which("ufw"):
             return True
         osr = self._read_os_release()
@@ -1907,7 +2285,7 @@ class EtgBridgeMod(loader.Module):
             return False
 
         for cmd, label in installers:
-            if self._run_pkg_command(cmd, logs, label):
+            if self._run_pkg_command(cmd, logs, label, sudo_ctx):
                 if shutil.which("ufw"):
                     logs.append("ufw: installed")
                     return True
@@ -1945,26 +2323,28 @@ class EtgBridgeMod(loader.Module):
             return True
         return _attempt(False)
 
-    def _disable_iptables(self, logs: typing.List[str]) -> bool:
+    def _disable_iptables(self, logs: typing.List[str], sudo_ctx: dict) -> bool:
         if self._is_windows():
             logs.append("iptables: skip on Windows")
             return True
         ok_tokens = ["not loaded", "not-found", "not running", "could not be found"]
-        stop_ok = self._run_shell_with_fallback(
-            ["systemctl", "stop", "iptables"],
-            logs,
-            "iptables stop",
-            ok_tokens=ok_tokens,
-        )
-        disable_ok = self._run_shell_with_fallback(
-            ["systemctl", "disable", "iptables"],
-            logs,
-            "iptables disable",
-            ok_tokens=ok_tokens,
-        )
+
+        def _run(cmd: typing.List[str], label: str) -> bool:
+            code, out = self._exec_cmd(cmd, sudo_ctx, True, logs, label)
+            out_low = (out or "").lower()
+            ok = code == 0 or any(token in out_low for token in ok_tokens)
+            if not ok:
+                code, out = self._exec_cmd(cmd, sudo_ctx, False, logs, label)
+                out_low = (out or "").lower()
+                ok = code == 0 or any(token in out_low for token in ok_tokens)
+            logs.append(f"{label}: {out if out else ('ok' if ok else 'failed')}")
+            return ok
+
+        stop_ok = _run(["systemctl", "stop", "iptables"], "iptables stop")
+        disable_ok = _run(["systemctl", "disable", "iptables"], "iptables disable")
         return stop_ok and disable_ok
 
-    def _ufw_allow_port(self, port: int, logs: typing.List[str]) -> bool:
+    def _ufw_allow_port(self, port: int, logs: typing.List[str], sudo_ctx: dict) -> bool:
         if self._is_windows():
             logs.append("ufw: not supported on Windows")
             return True
@@ -1974,27 +2354,20 @@ class EtgBridgeMod(loader.Module):
         def _attempt(use_sudo: bool) -> bool:
             cmd = ["ufw", "allow", str(port)]
             tag = "sudo" if use_sudo else "nosudo"
-            if use_sudo:
-                cmd = self._sudo_command(cmd, logs)
-                if not cmd:
-                    logs.append(f"ufw allow {port} ({tag}): sudo unavailable")
-                    return False
-            code, out = self._exec_shell(cmd)
+            code, out = self._exec_cmd(cmd, sudo_ctx, use_sudo, logs, f"ufw allow {port}")
             out_low = (out or "").lower()
             if "password" in out_low or "no tty" in out_low:
                 logs.append(f"ufw allow {port} ({tag}): sudo requires password")
                 return False
             ok = code == 0 and any(token in out_low for token in ok_tokens)
-            logs.append(
-                f"ufw allow {port} ({tag}): {out if out else ('ok' if ok else 'failed')}"
-            )
+            logs.append(f"ufw allow {port} ({tag}): {out if out else ('ok' if ok else 'failed')}")
             return ok
 
         if _attempt(True) or _attempt(False):
             return True
         if not shutil.which("ufw"):
             logs.append("ufw: not installed, attempting install")
-            self._install_ufw(logs)
+            self._install_ufw(logs, sudo_ctx)
         if _attempt(True) or _attempt(False):
             return True
         logs.append(f"ufw allow {port}: failed")
@@ -2043,6 +2416,7 @@ class EtgBridgeMod(loader.Module):
         port: int,
         logs: typing.List[str],
         lang: str,
+        sudo_ctx: dict,
     ) -> str:
         lines = [self._t(lang, "post_ok_title")]
         if self._is_windows():
@@ -2063,10 +2437,21 @@ class EtgBridgeMod(loader.Module):
             )
             return "\n".join(lines)
         install_cmd = self._get_ufw_install_command()
+        sudo_prefix = "sudo " if sudo_ctx.get("use_sudo") else ""
         if install_cmd:
+            if not sudo_prefix:
+                install_cmd = install_cmd.replace("sudo ", "")
             lines.append(self._t(lang, "post_install_ufw", cmd=install_cmd))
         lines.append(
-            self._t(lang, "post_open_port", cmd=self._get_ufw_open_command(port))
+            self._t(
+                lang,
+                "post_open_port",
+                cmd=(
+                    self._get_ufw_open_command(port)
+                    if sudo_prefix
+                    else self._get_ufw_open_command(port).replace("sudo ", "")
+                ),
+            )
         )
         if any("sudo requires password" in line for line in logs):
             lines.append(self._t(lang, "sudo_password"))
@@ -2089,6 +2474,7 @@ class EtgBridgeMod(loader.Module):
         lang: str,
         status: dict,
         scheme: str,
+        sudo_ctx: dict,
     ) -> str:
         ext_status = self._format_check_result(
             lang,
@@ -2106,18 +2492,22 @@ class EtgBridgeMod(loader.Module):
             self._t(lang, "check_summary", ext=ext_status, loc=loc_status),
         ]
 
+        sudo_prefix = "sudo " if sudo_ctx.get("use_sudo") else ""
         if not self._is_windows():
             lines.append(self._t(lang, "manual_step_iptables"))
-            lines.append("` .terminal sudo systemctl stop iptables`")
-            lines.append("` .terminal sudo systemctl disable iptables`")
+            lines.append(f"` .terminal {sudo_prefix}systemctl stop iptables`")
+            lines.append(f"` .terminal {sudo_prefix}systemctl disable iptables`")
 
             install_cmd = self._get_ufw_install_command()
             if install_cmd:
                 lines.append(self._t(lang, "manual_step_ufw_install"))
+                install_cmd = install_cmd if sudo_prefix else install_cmd.replace("sudo ", "")
                 lines.append(f"` .terminal {install_cmd}`")
 
             lines.append(self._t(lang, "manual_step_ufw_allow", port=port))
-            lines.append(f"` .terminal {self._get_ufw_open_command(port)}`")
+            open_cmd = self._get_ufw_open_command(port)
+            open_cmd = open_cmd if sudo_prefix else open_cmd.replace("sudo ", "")
+            lines.append(f"` .terminal {open_cmd}`")
         else:
             lines.append(self._t(lang, "manual_step_ufw_allow", port=port))
             lines.append(
@@ -2139,6 +2529,16 @@ class EtgBridgeMod(loader.Module):
         if local_ip and local_ip != external_ip:
             lines.append(f"` .terminal {self._curl_health_cmd(scheme, local_ip, port)}`")
         lines.append(self._t(lang, "manual_step_forward"))
+        return "\n".join(lines)
+
+    def _build_local_warning(self, lang: str, same_device: bool) -> str:
+        lines = []
+        if same_device:
+            lines.append(self._t(lang, "warning_local_same"))
+        else:
+            lines.append(self._t(lang, "warning_local_other"))
+        lines.append(self._t(lang, "warning_vpn"))
+        lines.append(self._t(lang, "etgtest_hint"))
         return "\n".join(lines)
 
     async def _send_install_result(
@@ -2317,7 +2717,11 @@ class EtgBridgeMod(loader.Module):
             return False
         return bool(data.get("ok"))
 
-    def _run_install(self, port: int) -> typing.Tuple[typing.List[str], str, str, dict]:
+    def _run_install(
+        self,
+        port: int,
+        sudo_ctx: dict,
+    ) -> typing.Tuple[typing.List[str], str, str, dict]:
         logs: typing.List[str] = []
         root = self._etg_root()
         os.makedirs(root, exist_ok=True)
@@ -2329,8 +2733,8 @@ class EtgBridgeMod(loader.Module):
         self._ensure_etg_service(root, logs)
 
         copied = self._copy_etg_files(logs)
-        iptables_ok = self._disable_iptables(logs)
-        ufw_ok = self._ufw_allow_port(int(self.config["listen_port"]), logs)
+        iptables_ok = self._disable_iptables(logs, sudo_ctx)
+        ufw_ok = self._ufw_allow_port(int(self.config["listen_port"]), logs, sudo_ctx)
         self._check_local_health(logs)
 
         external_ip = self._get_external_ip(logs)
@@ -2419,7 +2823,6 @@ class EtgBridgeMod(loader.Module):
             "external_ip": external_ip,
             "local_ip": local_ip,
         }
-        status["ok"] = bool(ufw_ok and ext_ok)
         return log_lines, etg_file, mandre_file, status
 
     def _run_uninstall(self) -> typing.List[str]:
@@ -2470,6 +2873,140 @@ class EtgBridgeMod(loader.Module):
         lang: str,
         note_key: str,
     ):
+        await self._etg_question_vps(call, port, chat_id, lang, note_key)
+
+    async def _etg_question_vps(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+    ):
+        text = f"{self._t(lang, 'q_vps_title')}\n{self._t(lang, 'q_vps_desc')}"
+        if note_key:
+            text = f"{text}\n{self._t(lang, note_key, port=port)}"
+        await call.edit(
+            text,
+            reply_markup=[
+                [
+                    {
+                        "text": self._t(lang, "btn_yes"),
+                        "callback": self._etg_set_vps,
+                        "args": (port, chat_id, lang, note_key, True),
+                    },
+                    {
+                        "text": self._t(lang, "btn_no"),
+                        "callback": self._etg_set_vps,
+                        "args": (port, chat_id, lang, note_key, False),
+                    },
+                ]
+            ],
+        )
+
+    async def _etg_set_vps(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+        is_vps: bool,
+    ):
+        if is_vps:
+            await self._etg_confirm_prompt(call, port, chat_id, lang, True, None, note_key)
+            return
+        await self._etg_question_public(call, port, chat_id, lang, note_key)
+
+    async def _etg_question_public(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+    ):
+        text = f"{self._t(lang, 'q_public_title')}\n{self._t(lang, 'q_public_desc')}"
+        await call.edit(
+            text,
+            reply_markup=[
+                [
+                    {
+                        "text": self._t(lang, "btn_yes"),
+                        "callback": self._etg_set_public,
+                        "args": (port, chat_id, lang, note_key, True),
+                    },
+                    {
+                        "text": self._t(lang, "btn_no"),
+                        "callback": self._etg_set_public,
+                        "args": (port, chat_id, lang, note_key, False),
+                    },
+                ]
+            ],
+        )
+
+    async def _etg_set_public(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+        has_public: bool,
+    ):
+        if has_public:
+            await self._etg_confirm_prompt(call, port, chat_id, lang, True, None, note_key)
+            return
+        await self._etg_question_device(call, port, chat_id, lang, note_key)
+
+    async def _etg_question_device(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+    ):
+        text = f"{self._t(lang, 'q_device_title')}\n{self._t(lang, 'q_device_desc')}"
+        await call.edit(
+            text,
+            reply_markup=[
+                [
+                    {
+                        "text": self._t(lang, "btn_same_device"),
+                        "callback": self._etg_set_device,
+                        "args": (port, chat_id, lang, note_key, True),
+                    },
+                    {
+                        "text": self._t(lang, "btn_other_device"),
+                        "callback": self._etg_set_device,
+                        "args": (port, chat_id, lang, note_key, False),
+                    },
+                ]
+            ],
+        )
+
+    async def _etg_set_device(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+        same_device: bool,
+    ):
+        await self._etg_confirm_prompt(call, port, chat_id, lang, False, same_device, note_key)
+
+    async def _etg_confirm_prompt(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        has_public: bool,
+        same_device: typing.Optional[bool],
+        note_key: str,
+    ):
         text = self._t(lang, "confirm_install", port=port)
         if note_key:
             text = f"{text}\n{self._t(lang, note_key, port=port)}"
@@ -2480,7 +3017,7 @@ class EtgBridgeMod(loader.Module):
                     {
                         "text": self._t(lang, "btn_install"),
                         "callback": self._etg_confirm,
-                        "args": (port, chat_id, lang),
+                        "args": (port, chat_id, lang, has_public, same_device),
                     },
                     {
                         "text": self._t(lang, "btn_cancel"),
@@ -2491,45 +3028,127 @@ class EtgBridgeMod(loader.Module):
             ],
         )
 
-    async def _etg_confirm(self, call: InlineCall, port: int, chat_id: int, lang: str):
+    async def _etg_confirm(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        has_public: bool,
+        same_device: typing.Optional[bool],
+    ):
         await call.edit(self._t(lang, "installing", port=port))
+        sudo_ctx = self._get_sudo_ctx()
+        if sudo_ctx.get("needs_password") and not sudo_ctx.get("password"):
+            self._pending_install = {
+                "port": port,
+                "chat_id": chat_id,
+                "lang": lang,
+                "has_public": has_public,
+                "same_device": same_device,
+            }
+            await call.edit(self._t(lang, "install_paused"))
+            await self._prompt_sudo_password(chat_id, lang, wrong=bool(sudo_ctx.get("password_invalid")))
+            self._start_pending_install_wait()
+            return
+
+        ok = await self._perform_install(chat_id, lang, port, has_public, same_device, sudo_ctx)
+        if ok:
+            await call.edit(self._t(lang, "install_done"))
+        else:
+            await call.edit(self._with_contact(lang, self._t(lang, "install_done_with_errors")))
+
+    async def _etg_cancel(self, call: InlineCall, lang: str):
+        await call.edit(self._t(lang, "install_cancel"))
+
+    def _start_pending_install_wait(self) -> None:
+        if self._pending_task and not self._pending_task.done():
+            return
+        self._pending_task = asyncio.create_task(self._wait_for_sudo_password())
+
+    async def _wait_for_sudo_password(self) -> None:
+        while self._pending_install:
+            await asyncio.sleep(2)
+            data = self._pending_install
+            if not data:
+                return
+            password = (self.config["sudo_password"] or "").strip()
+            if not password:
+                continue
+            sudo_ctx = self._get_sudo_ctx()
+            if sudo_ctx.get("password_invalid"):
+                try:
+                    self.config["sudo_password"] = ""
+                except Exception:
+                    pass
+                await self._prompt_sudo_password(
+                    data["chat_id"], data["lang"], wrong=True
+                )
+                continue
+            await self._perform_install(
+                data["chat_id"],
+                data["lang"],
+                data["port"],
+                data["has_public"],
+                data["same_device"],
+                sudo_ctx,
+            )
+            self._pending_install = None
+            return
+
+    async def _perform_install(
+        self,
+        chat_id: int,
+        lang: str,
+        port: int,
+        has_public: bool,
+        same_device: typing.Optional[bool],
+        sudo_ctx: dict,
+    ) -> bool:
         try:
             _log_lines, etg_file, mandre_file, status = await asyncio.to_thread(
-                self._run_install, port
+                self._run_install, port, sudo_ctx
             )
         except Exception as exc:
             self._set_setup_log([f"install failed: {exc}"])
-            await call.edit(self._t(lang, "install_error"))
-            return
-        if not status.get("ok"):
-            await call.edit(self._t(lang, "install_done_with_errors"))
-            log_text = "\n".join(_log_lines) if _log_lines else "no logs"
-            await self._send_text_or_file_chat(
-                chat_id,
-                log_text,
-                "etg_setup_log.txt",
-                "ETG logs",
+            await self._client.send_message(
+                chat_id, self._with_contact(lang, self._t(lang, "install_error"))
             )
-            scheme = "https" if self.config["tls_enabled"] else "http"
-            manual_text = self._build_manual_steps(port, lang, status, scheme)
-            await self._client.send_message(chat_id, manual_text)
-            return
+            return False
 
-        await call.edit(self._t(lang, "install_done"))
+        scheme = "https" if self.config["tls_enabled"] else "http"
+        external_ok = bool(status.get("external_ok"))
+        local_ok = bool(status.get("local_ok"))
+        if has_public:
+            ok = external_ok
+        else:
+            ok = local_ok or external_ok
+
+        if not ok:
+            manual_text = self._build_manual_steps(port, lang, status, scheme, sudo_ctx)
+            if has_public and not external_ok:
+                manual_text = f"{manual_text}\n{self._t(lang, 'port_forward_hint')}"
+            manual_text = self._with_contact(lang, manual_text)
+            await self._client.send_message(chat_id, manual_text)
+            return False
+
         if not (etg_file and os.path.isfile(etg_file)):
             etg_file, _ = self._ensure_release_files([])
         if not (mandre_file and os.path.isfile(mandre_file)):
             _, mandre_file = self._ensure_release_files([])
+
         await self._send_install_result(
             message=None,
-            text=self._build_post_install_message(port, _log_lines, lang),
+            text=self._build_post_install_message(port, _log_lines, lang, sudo_ctx),
             etg_file=etg_file,
             mandre_file=mandre_file,
             chat_id=chat_id,
         )
 
-    async def _etg_cancel(self, call: InlineCall, lang: str):
-        await call.edit(self._t(lang, "install_cancel"))
+        if not has_public:
+            warn = self._build_local_warning(lang, bool(same_device))
+            await self._client.send_message(chat_id, warn)
+        return True
 
     @loader.command(ru_doc="Удалить настройки ETG сервера")
     async def unetg(self, message: Message):
@@ -2596,7 +3215,9 @@ class EtgBridgeMod(loader.Module):
 
         port = self._parse_port(args)
         if port is None:
-            await utils.answer(message, self._t("ru", "port_invalid"))
+            await utils.answer(
+                message, self._with_contact("ru", self._t("ru", "port_invalid"))
+            )
             return
 
         free, error = self._port_is_free(port)
@@ -2605,7 +3226,12 @@ class EtgBridgeMod(loader.Module):
             if self._probe_health(port):
                 note_key = "confirm_note_existing"
             else:
-                await utils.answer(message, self._t("ru", "port_busy", port=port, error=error))
+                await utils.answer(
+                    message,
+                    self._with_contact(
+                        "ru", self._t("ru", "port_busy", port=port, error=error)
+                    ),
+                )
                 return
 
         text = f"{self._t('ru', 'choose_lang_title')} / {self._t('en', 'choose_lang_title')}\n"
@@ -2617,3 +3243,40 @@ class EtgBridgeMod(loader.Module):
             force_me=True,
         )
         return
+
+    @loader.command(ru_doc="Проверить доступность сервера со стороны плагина")
+    async def etgtest(self, message: Message):
+        args = utils.get_args_raw(message).strip()
+        device_id = args or "last"
+        action_id = self.api.net_test(device_id)
+        if not action_id:
+            await utils.answer(message, self._with_contact("ru", "Нет подключенных устройств."))
+            return
+        await utils.answer(message, "Проверяю доступ со стороны плагина...")
+        result = await self.api.wait_result(device_id, action_id, timeout=20)
+        if not result:
+            await utils.answer(
+                message,
+                self._with_contact("ru", "Нет ответа от плагина. Попробуйте позже."),
+            )
+            return
+        data = result.get("data") or {}
+        ok = bool(data.get("ok"))
+        url = data.get("url") or ""
+        latency = data.get("latency_ms")
+        status = data.get("status")
+        if ok:
+            text = f"ETG test: ok"
+            if latency is not None:
+                text += f" {latency}ms"
+            if status:
+                text += f" (HTTP {status})"
+            if url:
+                text += f"\nURL: {url}"
+            await utils.answer(message, text)
+            return
+        err = data.get("error") or "unknown error"
+        text = f"ETG test: fail\n{err}"
+        if url:
+            text += f"\nURL: {url}"
+        await utils.answer(message, self._with_contact("ru", text))
