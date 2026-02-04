@@ -6,6 +6,17 @@
 
 - `etg_bridge.py`
 
+## Источник плагинов и обновлений
+
+Модуль скачивает **EtgBridge.plugin** и **mandre_lib.plugin** с официального сервера:
+
+```
+https://sosiskibot.ru/etg/release/EtgBridge.plugin
+https://sosiskibot.ru/etg/release/mandre_lib.plugin
+```
+
+Именно этот домен используется для обновлений в плагине (не IP пользователя).
+
 ## Установка
 
 1) Скопируй `etg_bridge.py` в свои Heroku modules.

@@ -25,6 +25,7 @@ from ..inline.types import InlineCall
 
 MAX_BODY_BYTES = 4 * 1024 * 1024
 WS_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+OFFICIAL_UPDATE_BASE = "https://sosiskibot.ru/etg"
 
 
 class _WebSocketConn:
@@ -1285,26 +1286,34 @@ class EtgBridgeMod(loader.Module):
         os.makedirs(release_dir, exist_ok=True)
         os.makedirs(beta_dir, exist_ok=True)
 
-        sources = [
-            ("/root/ModMaker/Plugins/EtgBridge.plugin", "EtgBridge.plugin"),
-            ("/root/ModMaker/Plugins/mandre_lib.plugin", "mandre_lib.plugin"),
-        ]
-        copied = {}
-        for src, name in sources:
-            if not os.path.isfile(src):
-                alt = os.path.join(root, name)
-                if os.path.isfile(alt):
-                    src = alt
-                else:
-                    logs.append(f"missing source: {name}")
-                    continue
-            for target_dir in (release_dir, beta_dir):
-                dst = os.path.join(target_dir, name)
+        def download(url: str, dst: str) -> bool:
+            try:
                 try:
-                    shutil.copy2(src, dst)
-                    copied[name] = dst
-                except Exception as exc:
-                    logs.append(f"copy {name} failed: {exc}")
+                    requests.packages.urllib3.disable_warnings()  # type: ignore[attr-defined]
+                except Exception:
+                    pass
+                resp = self._session.get(url, timeout=30, verify=False)
+                if resp.status_code != 200:
+                    logs.append(f"download failed {url}: http {resp.status_code}")
+                    return False
+                with open(dst, "wb") as handle:
+                    handle.write(resp.content)
+                return True
+            except Exception as exc:
+                logs.append(f"download failed {url}: {exc}")
+                return False
+
+        copied: typing.Dict[str, str] = {}
+        base = OFFICIAL_UPDATE_BASE.rstrip("/")
+        for branch, target_dir in (("release", release_dir), ("beta", beta_dir)):
+            for name in ("EtgBridge.plugin", "mandre_lib.plugin"):
+                url = f"{base}/{branch}/{name}"
+                dst = os.path.join(target_dir, name)
+                if download(url, dst):
+                    if branch == "release":
+                        copied[name] = dst
+                else:
+                    logs.append(f"missing remote: {url}")
         return copied
 
     def _patch_plugin_defaults(
@@ -1455,8 +1464,7 @@ class EtgBridgeMod(loader.Module):
         ws_scheme = "wss" if scheme == "https" else "ws"
         sync_url = f"{scheme}://{host_url}:{self.config['listen_port']}/sync"
         ws_url = f"{ws_scheme}://{host_url}:{self.config['listen_port']}/ws"
-        update_base = f"{scheme}://{host_url}:{self.config['listen_port']}/etg"
-
+        update_base = OFFICIAL_UPDATE_BASE.rstrip("/")
         release_url = f"{update_base}/release"
         beta_url = f"{update_base}/beta"
         plugin_url = f"{release_url}/EtgBridge.plugin"
