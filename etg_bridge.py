@@ -5,6 +5,7 @@ import hashlib
 import io
 import json
 import os
+import platform
 import re
 import shutil
 import socket
@@ -26,6 +27,7 @@ from ..inline.types import InlineCall
 MAX_BODY_BYTES = 4 * 1024 * 1024
 WS_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 OFFICIAL_UPDATE_BASE = "https://sosiskibot.ru/etg"
+OFFICIAL_SERVER_SCRIPT = "https://sosiskibot.ru/etg/etg_server.py"
 
 
 class _WebSocketConn:
@@ -1157,7 +1159,7 @@ class EtgBridgeMod(loader.Module):
         return "\n".join(self._setup_log)
 
     @staticmethod
-    def _exec_cmd(args: typing.List[str]) -> typing.Tuple[int, str]:
+    def _exec_shell(args: typing.List[str]) -> typing.Tuple[int, str]:
         try:
             result = subprocess.run(
                 args,
@@ -1226,6 +1228,12 @@ class EtgBridgeMod(loader.Module):
             logs.append(f"server config write failed: {exc}")
 
     def _ensure_etg_service(self, root: str, logs: typing.List[str]) -> None:
+        if self._is_windows():
+            logs.append("systemd: not supported on Windows")
+            return
+        if not shutil.which("systemctl"):
+            logs.append("systemd: systemctl not available")
+            return
         server_path = self._etg_server_path(root)
         if not os.path.isfile(server_path):
             logs.append(f"server script missing: {server_path}")
@@ -1254,11 +1262,11 @@ class EtgBridgeMod(loader.Module):
         if not self._write_file(service_path, service_text):
             logs.append("systemd: failed to write service")
             return
-        code, out = self._exec_cmd(["systemctl", "daemon-reload"])
+        code, out = self._exec_shell(["systemctl", "daemon-reload"])
         logs.append("systemd: daemon-reload ok" if code == 0 else f"systemd: {out}")
-        code, out = self._exec_cmd(["systemctl", "enable", "--now", "etg-bridge.service"])
+        code, out = self._exec_shell(["systemctl", "enable", "--now", "etg-bridge.service"])
         logs.append("systemd: enable ok" if code == 0 else f"systemd: {out}")
-        code, out = self._exec_cmd(["systemctl", "restart", "etg-bridge.service"])
+        code, out = self._exec_shell(["systemctl", "restart", "etg-bridge.service"])
         logs.append("systemd: restart ok" if code == 0 else f"systemd: {out}")
 
     def _check_local_health(self, logs: typing.List[str]) -> None:
@@ -1268,12 +1276,176 @@ class EtgBridgeMod(loader.Module):
         else:
             logs.append(f"server health failed: {err or 'no response'}")
 
-    def _allow_ports(self, ports: typing.List[int], logs: typing.List[str]) -> None:
+    @staticmethod
+    def _is_windows() -> bool:
+        return platform.system().lower().startswith("win") or os.name == "nt"
+
+    def _ensure_server_script(self, root: str, logs: typing.List[str]) -> bool:
+        path = self._etg_server_path(root)
+        if os.path.isfile(path):
+            return True
+        urls = [
+            OFFICIAL_SERVER_SCRIPT,
+            f"{OFFICIAL_UPDATE_BASE}/etg/etg_server.py",
+        ]
+        for url in urls:
+            try:
+                resp = self._session.get(url, timeout=30, verify=False)
+                if resp.status_code != 200:
+                    logs.append(f"server download failed {url}: http {resp.status_code}")
+                    continue
+                os.makedirs(root, exist_ok=True)
+                with open(path, "wb") as handle:
+                    handle.write(resp.content)
+                logs.append(f"server script downloaded: {path}")
+                return True
+            except Exception as exc:
+                logs.append(f"server download failed {url}: {exc}")
+        logs.append(f"server script missing: {path}")
+        return False
+
+    def _read_os_release(self) -> typing.Dict[str, str]:
+        data: typing.Dict[str, str] = {}
+        try:
+            with open("/etc/os-release", "r", encoding="utf-8") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if not line or "=" not in line:
+                        continue
+                    key, value = line.split("=", 1)
+                    data[key] = value.strip().strip('"')
+        except Exception:
+            return {}
+        return data
+
+    def _sudo_command(self, args: typing.List[str], logs: typing.List[str]) -> typing.Optional[typing.List[str]]:
+        if os.geteuid() == 0:
+            return args
+        sudo = shutil.which("sudo")
+        if not sudo:
+            logs.append("sudo: not available, install ufw manually")
+            return None
+        return [sudo, "-n"] + args
+
+    def _run_pkg_command(self, args: typing.List[str], logs: typing.List[str], label: str) -> bool:
+        cmd = self._sudo_command(args, logs)
+        if not cmd:
+            return False
+        code, out = self._exec_shell(cmd)
+        if code == 0:
+            logs.append(f"{label}: ok")
+            return True
+        out_low = (out or "").lower()
+        if "password" in out_low or "no tty" in out_low:
+            logs.append(f"{label}: sudo requires password, install ufw manually")
+            return False
+        logs.append(f"{label}: {out}")
+        return False
+
+    def _install_ufw(self, logs: typing.List[str]) -> bool:
+        if shutil.which("ufw"):
+            return True
+        osr = self._read_os_release()
+        if osr:
+            os_id = osr.get("ID", "")
+            os_like = osr.get("ID_LIKE", "")
+            logs.append(f"os-release: {os_id} {os_like}".strip())
+
+        installers = []
+        if shutil.which("apt-get") or shutil.which("apt"):
+            installers.append((["apt-get", "install", "-y", "ufw"], "apt-get install ufw"))
+        if shutil.which("dnf"):
+            installers.append((["dnf", "-y", "install", "ufw"], "dnf install ufw"))
+        if shutil.which("yum"):
+            installers.append((["yum", "-y", "install", "ufw"], "yum install ufw"))
+        if shutil.which("pacman"):
+            installers.append((["pacman", "-Sy", "--noconfirm", "ufw"], "pacman install ufw"))
+        if shutil.which("zypper"):
+            installers.append((["zypper", "--non-interactive", "install", "ufw"], "zypper install ufw"))
+        if shutil.which("apk"):
+            installers.append((["apk", "add", "--no-cache", "ufw"], "apk add ufw"))
+
+        if not installers:
+            logs.append("ufw: no supported package manager found")
+            return False
+
+        for cmd, label in installers:
+            if self._run_pkg_command(cmd, logs, label):
+                if shutil.which("ufw"):
+                    logs.append("ufw: installed")
+                    return True
         if not shutil.which("ufw"):
-            logs.append("ufw: not installed, skip")
+            logs.append("ufw: install failed")
+        return shutil.which("ufw") is not None
+
+    def _get_ufw_install_command(self) -> str:
+        if self._is_windows():
+            return ""
+        if shutil.which("apt-get") or shutil.which("apt"):
+            return "sudo apt-get install -y ufw"
+        if shutil.which("dnf"):
+            return "sudo dnf -y install ufw"
+        if shutil.which("yum"):
+            return "sudo yum -y install ufw"
+        if shutil.which("pacman"):
+            return "sudo pacman -Sy --noconfirm ufw"
+        if shutil.which("zypper"):
+            return "sudo zypper --non-interactive install ufw"
+        if shutil.which("apk"):
+            return "sudo apk add --no-cache ufw"
+        return ""
+
+    @staticmethod
+    def _get_ufw_open_command(port: int) -> str:
+        return f"sudo ufw allow {port}"
+
+    def _build_post_install_message(self, port: int, logs: typing.List[str]) -> str:
+        lines = ["Всё настроено, установите библиотеки ниже!"]
+        if self._is_windows():
+            server_path = self._etg_server_path(self._etg_root())
+            lines.append("Windows: ufw не поддерживается.")
+            lines.append(
+                f'Открой порт: `netsh advfirewall firewall add rule name="ETG {port}" dir=in action=allow protocol=TCP localport={port}`'
+            )
+            lines.append(f'Запуск сервера: `python "{server_path}"`')
+            return "\n".join(lines)
+        install_cmd = self._get_ufw_install_command()
+        if install_cmd:
+            lines.append(f"Установка ufw: `{install_cmd}`")
+        lines.append(f"Открой порт: `{self._get_ufw_open_command(port)}`")
+        if any("sudo requires password" in line for line in logs):
+            lines.append("sudo попросит пароль на вашем ПК.")
+        return "\n".join(lines)
+
+    async def _send_install_result(
+        self,
+        message: typing.Optional[Message],
+        text: str,
+        etg_file: str,
+        mandre_file: str,
+        chat_id: typing.Optional[int] = None,
+    ) -> None:
+        if chat_id is None:
+            if message is None:
+                return
+            chat_id = utils.get_chat_id(message)
+        await self._client.send_message(chat_id, text)
+        if etg_file and os.path.isfile(etg_file):
+            await self._client.send_file(chat_id, etg_file)
+        if mandre_file and os.path.isfile(mandre_file):
+            await self._client.send_file(chat_id, mandre_file)
+
+    def _allow_ports(self, ports: typing.List[int], logs: typing.List[str]) -> None:
+        if self._is_windows():
+            logs.append("ufw: not supported on Windows")
             return
+        if not shutil.which("ufw"):
+            logs.append("ufw: not installed, attempting install")
+            if not self._install_ufw(logs):
+                logs.append("ufw: not installed, skip")
+                return
         for port in ports:
-            code, out = self._exec_cmd(["ufw", "allow", str(port)])
+            code, out = self._exec_shell(["ufw", "allow", str(port)])
             if code == 0:
                 logs.append(f"ufw allow {port}: ok")
             else:
@@ -1440,9 +1612,7 @@ class EtgBridgeMod(loader.Module):
         self.config["listen_port"] = int(port)
         self.config["use_external_server"] = True
 
-        server_path = self._etg_server_path(root)
-        if not os.path.isfile(server_path):
-            logs.append(f"server script missing: {server_path}")
+        self._ensure_server_script(root, logs)
         self._write_server_config(root, logs)
         self._ensure_etg_service(root, logs)
 
@@ -1506,9 +1676,9 @@ class EtgBridgeMod(loader.Module):
     def _run_uninstall(self) -> typing.List[str]:
         logs: typing.List[str] = []
         service_path = "/etc/systemd/system/etg-bridge.service"
-        code, out = self._exec_cmd(["systemctl", "stop", "etg-bridge.service"])
+        code, out = self._exec_shell(["systemctl", "stop", "etg-bridge.service"])
         logs.append("systemd: stop ok" if code == 0 else f"systemd: stop {out}")
-        code, out = self._exec_cmd(["systemctl", "disable", "etg-bridge.service"])
+        code, out = self._exec_shell(["systemctl", "disable", "etg-bridge.service"])
         logs.append("systemd: disable ok" if code == 0 else f"systemd: disable {out}")
         if os.path.isfile(service_path):
             try:
@@ -1516,7 +1686,7 @@ class EtgBridgeMod(loader.Module):
                 logs.append("systemd: service removed")
             except Exception as exc:
                 logs.append(f"systemd: remove failed: {exc}")
-        code, out = self._exec_cmd(["systemctl", "daemon-reload"])
+        code, out = self._exec_shell(["systemctl", "daemon-reload"])
         logs.append("systemd: daemon-reload ok" if code == 0 else f"systemd: {out}")
         cfg_path = self._etg_config_path(self._etg_root())
         if os.path.isfile(cfg_path):
@@ -1553,16 +1723,18 @@ class EtgBridgeMod(loader.Module):
             self._set_setup_log([f"install failed: {exc}"])
             await call.edit("Ошибка установки. Логи: `.etg log`")
             return
-
-        await call.edit("Всё настроено, установите библиотеки ниже!")
+        await call.edit("Установка завершена. Сообщение с командами отправлено.")
         if not (etg_file and os.path.isfile(etg_file)):
             etg_file, _ = self._ensure_release_files([])
         if not (mandre_file and os.path.isfile(mandre_file)):
             _, mandre_file = self._ensure_release_files([])
-        if etg_file:
-            await self._client.send_file(chat_id, etg_file)
-        if mandre_file:
-            await self._client.send_file(chat_id, mandre_file)
+        await self._send_install_result(
+            message=None,
+            text=self._build_post_install_message(port, _log_lines),
+            etg_file=etg_file,
+            mandre_file=mandre_file,
+            chat_id=chat_id,
+        )
 
     async def _etg_cancel(self, call: InlineCall):
         await call.edit("Установка отменена.")
@@ -1591,15 +1763,16 @@ class EtgBridgeMod(loader.Module):
         except Exception as exc:
             await utils.answer(message, f"Ошибка переустановки: {exc}")
             return
-        await utils.answer(message, "Всё настроено, установите библиотеки ниже!")
         if not (etg_file and os.path.isfile(etg_file)):
             etg_file, _ = self._ensure_release_files([])
         if not (mandre_file and os.path.isfile(mandre_file)):
             _, mandre_file = self._ensure_release_files([])
-        if etg_file:
-            await utils.answer_file(message, etg_file)
-        if mandre_file:
-            await utils.answer_file(message, mandre_file)
+        await self._send_install_result(
+            message,
+            self._build_post_install_message(port, _log_lines),
+            etg_file,
+            mandre_file,
+        )
 
     @loader.command(ru_doc="ETG bridge control")
     async def etg(self, message: Message):
