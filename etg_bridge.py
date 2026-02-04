@@ -29,6 +29,493 @@ WS_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 OFFICIAL_UPDATE_BASE = "https://sosiskibot.ru/etg"
 OFFICIAL_SERVER_SCRIPT = "https://sosiskibot.ru/etg/etg_server.py"
 
+INSTALL_LANGS = [
+    ("ru", "🇷🇺 Русский"),
+    ("be", "🇧🇾 Беларуская"),
+    ("uk", "🇺🇦 Українська"),
+    ("kk", "🇰🇿 Қазақша"),
+    ("en", "🇬🇧 English"),
+    ("fr", "🇫🇷 Français"),
+    ("ja", "🇯🇵 日本語"),
+    ("zh", "🇨🇳 中文"),
+    ("ko", "🇰🇷 한국어"),
+    ("kp", "🇰🇵 조선말"),
+    ("pir_ru", "🏴‍☠️ Пиратский RU"),
+    ("pir_en", "🏴‍☠️ Pirate EN"),
+    ("meme", "🤪 Мемчик"),
+]
+
+_INSTALL_I18N = {
+    "en": {
+        "choose_lang_title": "Choose install language",
+        "choose_lang_hint": "Language affects only the installer messages.",
+        "confirm_install": "Install ETG on port {port}?",
+        "confirm_note_existing": "Port {port} is already used by ETG and will be reused.",
+        "btn_install": "✅ Install",
+        "btn_cancel": "❌ Cancel",
+        "installing": "Installing ETG on port {port}...",
+        "install_error": "Install failed. Logs: `.etg log`",
+        "install_done": "Install finished. Commands were sent.",
+        "install_done_with_errors": "Install finished with errors. Logs + manual steps were sent.",
+        "install_cancel": "Install cancelled.",
+        "port_prompt": "Provide a port: `.etg 8955`",
+        "port_invalid": "Port must be 1-65535. Example: `.etg 8955`",
+        "port_busy": "Port {port} is busy: {error}",
+        "manual_title": "Install had errors. Try manual steps:",
+        "manual_hint": "Commands can be executed from userbot via `.terminal`.",
+        "manual_step_iptables": "1) Disable iptables",
+        "manual_step_ufw_install": "2) Install ufw",
+        "manual_step_ufw_allow": "3) Open port {port}",
+        "manual_step_server": "4) Start ETG server",
+        "manual_step_check": "5) Check port reachability",
+        "manual_step_forward": "If external IP fails — set up port forwarding on router.",
+        "post_ok_title": "All set. Install libraries below!",
+        "post_install_ufw": "Install ufw: `{cmd}`",
+        "post_open_port": "Open port: `{cmd}`",
+        "post_open_port_win": "Open port: `{cmd}`",
+        "post_start_server": "Start server: `{cmd}`",
+        "post_win_note": "Windows: ufw is not supported.",
+        "sudo_password": "sudo may ask for password on your PC.",
+        "port_check_external": "External check",
+        "port_check_local": "Local check",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Port check: external {ext} / local {loc}",
+    },
+    "ru": {
+        "choose_lang_title": "Выберите язык установки",
+        "choose_lang_hint": "Язык влияет только на сообщения установщика.",
+        "confirm_install": "Установить ETG на порт {port}?",
+        "confirm_note_existing": "Порт {port} уже занят ETG и будет использован.",
+        "btn_install": "✅ Установить",
+        "btn_cancel": "❌ Отмена",
+        "installing": "Устанавливаю ETG на порт {port}...",
+        "install_error": "Ошибка установки. Логи: `.etg log`",
+        "install_done": "Установка завершена. Сообщение с командами отправлено.",
+        "install_done_with_errors": "Установка завершена с ошибками. Логи и шаги отправлены.",
+        "install_cancel": "Установка отменена.",
+        "port_prompt": "Укажите порт: `.etg 8955`",
+        "port_invalid": "Нужен порт 1-65535. Пример: `.etg 8955`",
+        "port_busy": "Порт {port} занят: {error}",
+        "manual_title": "Установка выполнена с ошибками. Попробуйте вручную:",
+        "manual_hint": "Команды можно запускать из юзербота через `.terminal`.",
+        "manual_step_iptables": "1) Отключить iptables",
+        "manual_step_ufw_install": "2) Установить ufw",
+        "manual_step_ufw_allow": "3) Открыть порт {port}",
+        "manual_step_server": "4) Запустить ETG сервер",
+        "manual_step_check": "5) Проверить доступность порта",
+        "manual_step_forward": "Если внешний адрес недоступен — нужен проброс порта на роутере.",
+        "post_ok_title": "Всё настроено, установите библиотеки ниже!",
+        "post_install_ufw": "Установка ufw: `{cmd}`",
+        "post_open_port": "Открой порт: `{cmd}`",
+        "post_open_port_win": "Открой порт: `{cmd}`",
+        "post_start_server": "Запуск сервера: `{cmd}`",
+        "post_win_note": "Windows: ufw не поддерживается.",
+        "sudo_password": "sudo попросит пароль на вашем ПК.",
+        "port_check_external": "Проверка внешнего",
+        "port_check_local": "Проверка локального",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Проверка порта: внешний {ext} / локальный {loc}",
+    },
+    "be": {
+        "choose_lang_title": "Абярыце мову ўстаноўкі",
+        "choose_lang_hint": "Мова ўплывае толькі на паведамленні ўстаноўкі.",
+        "confirm_install": "Усталяваць ETG на порт {port}?",
+        "confirm_note_existing": "Порт {port} ужо заняты ETG і будзе выкарыстаны.",
+        "btn_install": "✅ Усталяваць",
+        "btn_cancel": "❌ Адмена",
+        "installing": "Усталёўваю ETG на порт {port}...",
+        "install_error": "Памылка ўстаноўкі. Лагі: `.etg log`",
+        "install_done": "Устаноўка завершана. Каманды адпраўлены.",
+        "install_done_with_errors": "Устаноўка з памылкамі. Лагі і крокі адпраўлены.",
+        "install_cancel": "Устаноўка адменена.",
+        "port_prompt": "Пакажыце порт: `.etg 8955`",
+        "port_invalid": "Порт 1-65535. Прыклад: `.etg 8955`",
+        "port_busy": "Порт {port} заняты: {error}",
+        "manual_title": "Устаноўка з памылкамі. Паспрабуйце ўручную:",
+        "manual_hint": "Каманды можна запускаць праз `.terminal`.",
+        "manual_step_iptables": "1) Адключыць iptables",
+        "manual_step_ufw_install": "2) Усталяваць ufw",
+        "manual_step_ufw_allow": "3) Адкрыць порт {port}",
+        "manual_step_server": "4) Запусціць ETG сервер",
+        "manual_step_check": "5) Праверыць даступнасць порта",
+        "manual_step_forward": "Калі вонкавы IP недаступны — патрэбны пракід порта.",
+        "post_ok_title": "Усё гатова, усталюйце бібліятэкі ніжэй!",
+        "post_install_ufw": "Устаноўка ufw: `{cmd}`",
+        "post_open_port": "Адкрый порт: `{cmd}`",
+        "post_open_port_win": "Адкрый порт: `{cmd}`",
+        "post_start_server": "Запуск сервера: `{cmd}`",
+        "post_win_note": "Windows: ufw не падтрымліваецца.",
+        "sudo_password": "sudo можа запытаць пароль.",
+        "port_check_external": "Праверка знешняга",
+        "port_check_local": "Праверка лакальнага",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Праверка порта: знешні {ext} / лакальны {loc}",
+    },
+    "uk": {
+        "choose_lang_title": "Оберіть мову встановлення",
+        "choose_lang_hint": "Мова впливає лише на повідомлення встановлювача.",
+        "confirm_install": "Встановити ETG на порт {port}?",
+        "confirm_note_existing": "Порт {port} вже зайнятий ETG і буде використаний.",
+        "btn_install": "✅ Встановити",
+        "btn_cancel": "❌ Скасувати",
+        "installing": "Встановлюю ETG на порт {port}...",
+        "install_error": "Помилка встановлення. Логи: `.etg log`",
+        "install_done": "Встановлення завершено. Команди надіслано.",
+        "install_done_with_errors": "Встановлення з помилками. Логи та кроки надіслано.",
+        "install_cancel": "Встановлення скасовано.",
+        "port_prompt": "Вкажіть порт: `.etg 8955`",
+        "port_invalid": "Порт 1-65535. Приклад: `.etg 8955`",
+        "port_busy": "Порт {port} зайнятий: {error}",
+        "manual_title": "Встановлення з помилками. Спробуйте вручну:",
+        "manual_hint": "Команди можна запускати через `.terminal`.",
+        "manual_step_iptables": "1) Вимкнути iptables",
+        "manual_step_ufw_install": "2) Встановити ufw",
+        "manual_step_ufw_allow": "3) Відкрити порт {port}",
+        "manual_step_server": "4) Запустити ETG сервер",
+        "manual_step_check": "5) Перевірити доступність порту",
+        "manual_step_forward": "Якщо зовнішній IP недоступний — потрібен проброс порту.",
+        "post_ok_title": "Все готово, встановіть бібліотеки нижче!",
+        "post_install_ufw": "Встановити ufw: `{cmd}`",
+        "post_open_port": "Відкрий порт: `{cmd}`",
+        "post_open_port_win": "Відкрий порт: `{cmd}`",
+        "post_start_server": "Запуск сервера: `{cmd}`",
+        "post_win_note": "Windows: ufw не підтримується.",
+        "sudo_password": "sudo може запросити пароль.",
+        "port_check_external": "Перевірка зовнішнього",
+        "port_check_local": "Перевірка локального",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Перевірка порту: зовнішній {ext} / локальний {loc}",
+    },
+    "kk": {
+        "choose_lang_title": "Орнату тілін таңдаңыз",
+        "choose_lang_hint": "Тіл тек орнатушы хабарламаларына әсер етеді.",
+        "confirm_install": "{port} портына ETG орнату керек пе?",
+        "confirm_note_existing": "{port} порты ETG арқылы бос емес, қайта қолданылады.",
+        "btn_install": "✅ Орнату",
+        "btn_cancel": "❌ Бас тарту",
+        "installing": "{port} портына ETG орнатылуда...",
+        "install_error": "Орнату қатесі. Логтар: `.etg log`",
+        "install_done": "Орнату аяқталды. Командалар жіберілді.",
+        "install_done_with_errors": "Қателермен аяқталды. Логтар мен қадамдар жіберілді.",
+        "install_cancel": "Орнату тоқтатылды.",
+        "port_prompt": "Порт көрсетіңіз: `.etg 8955`",
+        "port_invalid": "Порт 1-65535. Мысал: `.etg 8955`",
+        "port_busy": "{port} порты бос емес: {error}",
+        "manual_title": "Қателер бар. Қолмен жасап көріңіз:",
+        "manual_hint": "Командаларды `.terminal` арқылы іске қоса аласыз.",
+        "manual_step_iptables": "1) iptables өшіру",
+        "manual_step_ufw_install": "2) ufw орнату",
+        "manual_step_ufw_allow": "3) {port} портын ашу",
+        "manual_step_server": "4) ETG серверін іске қосу",
+        "manual_step_check": "5) Порт қолжетімділігін тексеру",
+        "manual_step_forward": "Сыртқы IP ашылмаса — роутерде проброс керек.",
+        "post_ok_title": "Бәрі дайын, төменде кітапханаларды орнатыңыз!",
+        "post_install_ufw": "ufw орнату: `{cmd}`",
+        "post_open_port": "Порт ашу: `{cmd}`",
+        "post_open_port_win": "Порт ашу: `{cmd}`",
+        "post_start_server": "Серверді іске қосу: `{cmd}`",
+        "post_win_note": "Windows: ufw қолжетімсіз.",
+        "sudo_password": "sudo құпиясөз сұрауы мүмкін.",
+        "port_check_external": "Сыртқы тексеру",
+        "port_check_local": "Жергілікті тексеру",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Порт тексеруі: сыртқы {ext} / жергілікті {loc}",
+    },
+    "fr": {
+        "choose_lang_title": "Choisissez la langue d'installation",
+        "choose_lang_hint": "La langue n'affecte que les messages d'installation.",
+        "confirm_install": "Installer ETG sur le port {port} ?",
+        "confirm_note_existing": "Le port {port} est déjà utilisé par ETG et sera réutilisé.",
+        "btn_install": "✅ Installer",
+        "btn_cancel": "❌ Annuler",
+        "installing": "Installation d'ETG sur le port {port}...",
+        "install_error": "Erreur d'installation. Logs : `.etg log`",
+        "install_done": "Installation terminée. Les commandes ont été envoyées.",
+        "install_done_with_errors": "Installation avec erreurs. Logs et étapes envoyés.",
+        "install_cancel": "Installation annulée.",
+        "port_prompt": "Indiquez un port : `.etg 8955`",
+        "port_invalid": "Port 1-65535. Exemple : `.etg 8955`",
+        "port_busy": "Le port {port} est occupé : {error}",
+        "manual_title": "Installation avec erreurs. Essayez manuellement :",
+        "manual_hint": "Les commandes peuvent être exécutées via `.terminal`.",
+        "manual_step_iptables": "1) Désactiver iptables",
+        "manual_step_ufw_install": "2) Installer ufw",
+        "manual_step_ufw_allow": "3) Ouvrir le port {port}",
+        "manual_step_server": "4) Démarrer le serveur ETG",
+        "manual_step_check": "5) Vérifier l'accès au port",
+        "manual_step_forward": "Si l'IP externe échoue — configurer le port forwarding.",
+        "post_ok_title": "Tout est prêt, installez les bibliothèques ci-dessous !",
+        "post_install_ufw": "Installer ufw : `{cmd}`",
+        "post_open_port": "Ouvrir le port : `{cmd}`",
+        "post_open_port_win": "Ouvrir le port : `{cmd}`",
+        "post_start_server": "Démarrer le serveur : `{cmd}`",
+        "post_win_note": "Windows : ufw n'est pas pris en charge.",
+        "sudo_password": "sudo peut demander un mot de passe.",
+        "port_check_external": "Vérification externe",
+        "port_check_local": "Vérification locale",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Test du port : externe {ext} / local {loc}",
+    },
+    "ja": {
+        "choose_lang_title": "インストール言語を選択",
+        "choose_lang_hint": "言語はインストーラーの表示のみ変更します。",
+        "confirm_install": "ポート{port}にETGをインストールしますか？",
+        "confirm_note_existing": "ポート{port}はETGで使用中のため再利用します。",
+        "btn_install": "✅ インストール",
+        "btn_cancel": "❌ キャンセル",
+        "installing": "ポート{port}にETGをインストール中...",
+        "install_error": "インストール失敗。ログ: `.etg log`",
+        "install_done": "インストール完了。コマンドを送信しました。",
+        "install_done_with_errors": "エラーあり。ログと手順を送信しました。",
+        "install_cancel": "インストールを中止しました。",
+        "port_prompt": "ポート指定: `.etg 8955`",
+        "port_invalid": "ポートは1-65535。例: `.etg 8955`",
+        "port_busy": "ポート{port}は使用中: {error}",
+        "manual_title": "エラーが出ました。手動で試してください：",
+        "manual_hint": "`.terminal`で実行できます。",
+        "manual_step_iptables": "1) iptablesを無効化",
+        "manual_step_ufw_install": "2) ufwをインストール",
+        "manual_step_ufw_allow": "3) ポート{port}を開放",
+        "manual_step_server": "4) ETGサーバー起動",
+        "manual_step_check": "5) ポート疎通チェック",
+        "manual_step_forward": "外部IPがNGならルータでポート開放が必要。",
+        "post_ok_title": "準備完了。以下のライブラリを入れてください！",
+        "post_install_ufw": "ufwインストール: `{cmd}`",
+        "post_open_port": "ポート開放: `{cmd}`",
+        "post_open_port_win": "ポート開放: `{cmd}`",
+        "post_start_server": "サーバー起動: `{cmd}`",
+        "post_win_note": "Windows: ufwは非対応。",
+        "sudo_password": "sudoがパスワードを要求する場合があります。",
+        "port_check_external": "外部チェック",
+        "port_check_local": "ローカルチェック",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "ポート確認: 外部 {ext} / ローカル {loc}",
+    },
+    "zh": {
+        "choose_lang_title": "选择安装语言",
+        "choose_lang_hint": "语言仅影响安装器提示。",
+        "confirm_install": "在端口{port}安装ETG？",
+        "confirm_note_existing": "端口{port}已被ETG占用，将复用。",
+        "btn_install": "✅ 安装",
+        "btn_cancel": "❌ 取消",
+        "installing": "正在端口{port}安装ETG...",
+        "install_error": "安装失败。日志: `.etg log`",
+        "install_done": "安装完成。命令已发送。",
+        "install_done_with_errors": "安装有错误。日志和步骤已发送。",
+        "install_cancel": "安装已取消。",
+        "port_prompt": "输入端口：`.etg 8955`",
+        "port_invalid": "端口范围1-65535。示例：`.etg 8955`",
+        "port_busy": "端口{port}被占用：{error}",
+        "manual_title": "安装有错误，请手动尝试：",
+        "manual_hint": "可通过`.terminal`执行命令。",
+        "manual_step_iptables": "1) 关闭iptables",
+        "manual_step_ufw_install": "2) 安装ufw",
+        "manual_step_ufw_allow": "3) 放行端口{port}",
+        "manual_step_server": "4) 启动ETG服务器",
+        "manual_step_check": "5) 检查端口连通性",
+        "manual_step_forward": "外网不可达需在路由器做端口映射。",
+        "post_ok_title": "准备完成，请安装下面的库！",
+        "post_install_ufw": "安装ufw：`{cmd}`",
+        "post_open_port": "放行端口：`{cmd}`",
+        "post_open_port_win": "放行端口：`{cmd}`",
+        "post_start_server": "启动服务器：`{cmd}`",
+        "post_win_note": "Windows不支持ufw。",
+        "sudo_password": "sudo 可能需要密码。",
+        "port_check_external": "外网检查",
+        "port_check_local": "本地检查",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "端口检查：外网 {ext} / 本地 {loc}",
+    },
+    "ko": {
+        "choose_lang_title": "설치 언어 선택",
+        "choose_lang_hint": "언어는 설치 메시지만 변경합니다.",
+        "confirm_install": "{port} 포트에 ETG 설치?",
+        "confirm_note_existing": "{port} 포트는 이미 ETG가 사용 중입니다.",
+        "btn_install": "✅ 설치",
+        "btn_cancel": "❌ 취소",
+        "installing": "{port} 포트에 ETG 설치 중...",
+        "install_error": "설치 실패. 로그: `.etg log`",
+        "install_done": "설치 완료. 명령이 전송됨.",
+        "install_done_with_errors": "오류 포함. 로그와 단계 전송됨.",
+        "install_cancel": "설치 취소됨.",
+        "port_prompt": "포트 입력: `.etg 8955`",
+        "port_invalid": "포트 1-65535. 예: `.etg 8955`",
+        "port_busy": "{port} 포트 사용 중: {error}",
+        "manual_title": "오류가 있습니다. 수동으로 시도:",
+        "manual_hint": "`.terminal`로 실행 가능.",
+        "manual_step_iptables": "1) iptables 비활성화",
+        "manual_step_ufw_install": "2) ufw 설치",
+        "manual_step_ufw_allow": "3) 포트 {port} 허용",
+        "manual_step_server": "4) ETG 서버 시작",
+        "manual_step_check": "5) 포트 연결 확인",
+        "manual_step_forward": "외부 IP 실패 시 라우터 포트포워딩 필요.",
+        "post_ok_title": "완료! 아래 라이브러리를 설치하세요.",
+        "post_install_ufw": "ufw 설치: `{cmd}`",
+        "post_open_port": "포트 허용: `{cmd}`",
+        "post_open_port_win": "포트 허용: `{cmd}`",
+        "post_start_server": "서버 시작: `{cmd}`",
+        "post_win_note": "Windows는 ufw 미지원.",
+        "sudo_password": "sudo가 비밀번호를 요구할 수 있음.",
+        "port_check_external": "외부 체크",
+        "port_check_local": "로컬 체크",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "포트 체크: 외부 {ext} / 로컬 {loc}",
+    },
+    "kp": {
+        "choose_lang_title": "설치 언어 선택",
+        "choose_lang_hint": "언어는 설치 메시지만 바꿉니다.",
+        "confirm_install": "{port} 포트에 ETG 설치?",
+        "confirm_note_existing": "{port} 포트는 이미 ETG가 사용 중입니다.",
+        "btn_install": "✅ 설치",
+        "btn_cancel": "❌ 취소",
+        "installing": "{port} 포트에 ETG 설치중...",
+        "install_error": "설치 실패. 로그: `.etg log`",
+        "install_done": "설치 완료. 명령 전송됨.",
+        "install_done_with_errors": "오류 있음. 로그/단계 전송됨.",
+        "install_cancel": "설치 취소됨.",
+        "port_prompt": "포트 입력: `.etg 8955`",
+        "port_invalid": "포트 1-65535. 예: `.etg 8955`",
+        "port_busy": "{port} 포트 사용 중: {error}",
+        "manual_title": "오류가 있습니다. 수동으로:",
+        "manual_hint": "`.terminal`로 실행.",
+        "manual_step_iptables": "1) iptables 끄기",
+        "manual_step_ufw_install": "2) ufw 설치",
+        "manual_step_ufw_allow": "3) 포트 {port} 허용",
+        "manual_step_server": "4) ETG 서버 시작",
+        "manual_step_check": "5) 포트 확인",
+        "manual_step_forward": "외부 IP 실패 시 포트포워딩 필요.",
+        "post_ok_title": "완료! 아래 라이브러리 설치.",
+        "post_install_ufw": "ufw 설치: `{cmd}`",
+        "post_open_port": "포트 허용: `{cmd}`",
+        "post_open_port_win": "포트 허용: `{cmd}`",
+        "post_start_server": "서버 시작: `{cmd}`",
+        "post_win_note": "Windows는 ufw 미지원.",
+        "sudo_password": "sudo가 비밀번호를 요구할 수 있음.",
+        "port_check_external": "외부 체크",
+        "port_check_local": "로컬 체크",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "포트 체크: 외부 {ext} / 로컬 {loc}",
+    },
+    "pir_ru": {
+        "choose_lang_title": "Выбери язык, йо-хо-хо",
+        "choose_lang_hint": "Язык влияет лишь на болтовню установщика.",
+        "confirm_install": "Ставим ETG на порт {port}, капитан?",
+        "confirm_note_existing": "Порт {port} занят, но мы его всё равно возьмём.",
+        "btn_install": "✅ Йо-хо",
+        "btn_cancel": "❌ Отбой",
+        "installing": "Куем ETG на порт {port}...",
+        "install_error": "Провал. Логи: `.etg log`",
+        "install_done": "Готово. Команды отправлены.",
+        "install_done_with_errors": "С косяками. Логи и шаги отправлены.",
+        "install_cancel": "Отмена.",
+        "port_prompt": "Дай порт: `.etg 8955`",
+        "port_invalid": "Порт 1-65535. Пример: `.etg 8955`",
+        "port_busy": "Порт {port} занят: {error}",
+        "manual_title": "Ошибка. Делай вручную:",
+        "manual_hint": "Команды через `.terminal`.",
+        "manual_step_iptables": "1) Выруби iptables",
+        "manual_step_ufw_install": "2) Поставь ufw",
+        "manual_step_ufw_allow": "3) Открой порт {port}",
+        "manual_step_server": "4) Запусти сервер",
+        "manual_step_check": "5) Проверь порт",
+        "manual_step_forward": "Нет внешнего — пробрось порт на роутере.",
+        "post_ok_title": "Готово, ставь библиотеки ниже!",
+        "post_install_ufw": "Установка ufw: `{cmd}`",
+        "post_open_port": "Открой порт: `{cmd}`",
+        "post_open_port_win": "Открой порт: `{cmd}`",
+        "post_start_server": "Запуск сервера: `{cmd}`",
+        "post_win_note": "Windows: ufw не работает.",
+        "sudo_password": "sudo может спросить пароль.",
+        "port_check_external": "Внешний чек",
+        "port_check_local": "Локальный чек",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Чек порта: внешний {ext} / локальный {loc}",
+    },
+    "pir_en": {
+        "choose_lang_title": "Choose yer install tongue, matey",
+        "choose_lang_hint": "Language only changes installer chatter.",
+        "confirm_install": "Hoist ETG on port {port}?",
+        "confirm_note_existing": "Port {port} be taken by ETG, we reuse it.",
+        "btn_install": "✅ Aye",
+        "btn_cancel": "❌ Nay",
+        "installing": "Hoisting ETG on port {port}...",
+        "install_error": "Failed. Logs: `.etg log`",
+        "install_done": "Done. Commands sent.",
+        "install_done_with_errors": "With errors. Logs and steps sent.",
+        "install_cancel": "Cancelled.",
+        "port_prompt": "Give a port: `.etg 8955`",
+        "port_invalid": "Port 1-65535. Example: `.etg 8955`",
+        "port_busy": "Port {port} busy: {error}",
+        "manual_title": "Errors. Try manual steps:",
+        "manual_hint": "Commands via `.terminal`.",
+        "manual_step_iptables": "1) Disable iptables",
+        "manual_step_ufw_install": "2) Install ufw",
+        "manual_step_ufw_allow": "3) Open port {port}",
+        "manual_step_server": "4) Start ETG server",
+        "manual_step_check": "5) Check port",
+        "manual_step_forward": "If external fails — port-forward on router.",
+        "post_ok_title": "All set, install libs below!",
+        "post_install_ufw": "Install ufw: `{cmd}`",
+        "post_open_port": "Open port: `{cmd}`",
+        "post_open_port_win": "Open port: `{cmd}`",
+        "post_start_server": "Start server: `{cmd}`",
+        "post_win_note": "Windows: ufw unsupported.",
+        "sudo_password": "sudo may ask password.",
+        "port_check_external": "External check",
+        "port_check_local": "Local check",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Port check: external {ext} / local {loc}",
+    },
+    "meme": {
+        "choose_lang_title": "Выбери язык, мемчик",
+        "choose_lang_hint": "Язык меняет только болтовню установщика.",
+        "confirm_install": "Ставим ETG на {port}?",
+        "confirm_note_existing": "Порт {port} занят ETG, юзаем его.",
+        "btn_install": "✅ Поехали",
+        "btn_cancel": "❌ Стопэ",
+        "installing": "Ставлю ETG на {port}...",
+        "install_error": "Ошибочка. Логи: `.etg log`",
+        "install_done": "Готово. Команды отправил.",
+        "install_done_with_errors": "С ошибками. Логи и шаги отправил.",
+        "install_cancel": "Отмена.",
+        "port_prompt": "Порт: `.etg 8955`",
+        "port_invalid": "Порт 1-65535. Пример: `.etg 8955`",
+        "port_busy": "Порт {port} занят: {error}",
+        "manual_title": "Не ок. Делай руками:",
+        "manual_hint": "Команды через `.terminal`.",
+        "manual_step_iptables": "1) Выключи iptables",
+        "manual_step_ufw_install": "2) Поставь ufw",
+        "manual_step_ufw_allow": "3) Открой порт {port}",
+        "manual_step_server": "4) Запусти сервер",
+        "manual_step_check": "5) Проверь порт",
+        "manual_step_forward": "Внешний не алё — пробрось порт.",
+        "post_ok_title": "Всё ок, ставь либы ниже!",
+        "post_install_ufw": "Установка ufw: `{cmd}`",
+        "post_open_port": "Открой порт: `{cmd}`",
+        "post_open_port_win": "Открой порт: `{cmd}`",
+        "post_start_server": "Запуск сервера: `{cmd}`",
+        "post_win_note": "Windows: ufw мимо.",
+        "sudo_password": "sudo может попросить пароль.",
+        "port_check_external": "Внешний чек",
+        "port_check_local": "Локальный чек",
+        "port_check_ok": "ok",
+        "port_check_fail": "fail",
+        "check_summary": "Чек порта: внешний {ext} / локальный {loc}",
+    },
+}
+
 
 class _WebSocketConn:
     def __init__(self, sock: socket.socket):
@@ -1144,6 +1631,20 @@ class EtgBridgeMod(loader.Module):
         file.name = filename
         await message.reply(file, caption=caption)
 
+    async def _send_text_or_file_chat(
+        self,
+        chat_id: int,
+        text: str,
+        filename: str,
+        caption: str,
+    ) -> None:
+        if len(text) <= 3500:
+            await self._client.send_message(chat_id, text)
+            return
+        file = io.BytesIO(text.encode("utf-8"))
+        file.name = filename
+        await self._client.send_file(chat_id, file, caption=caption)
+
     def _set_setup_log(self, logs: typing.List[str]) -> None:
         self._ensure_setup_log()
         if self._setup_log is None:
@@ -1157,6 +1658,42 @@ class EtgBridgeMod(loader.Module):
         if not self._setup_log:
             return "Логов нет."
         return "\n".join(self._setup_log)
+
+    @staticmethod
+    def _get_install_langs() -> typing.List[typing.Tuple[str, str]]:
+        return list(INSTALL_LANGS)
+
+    def _t(self, lang: str, key: str, **kwargs) -> str:
+        base = _INSTALL_I18N.get("en", {})
+        table = _INSTALL_I18N.get(lang or "", {})
+        text = table.get(key) or base.get(key) or key
+        try:
+            return text.format(**kwargs)
+        except Exception:
+            return text
+
+    def _build_lang_keyboard(
+        self,
+        port: int,
+        chat_id: int,
+        note_key: str,
+    ) -> typing.List[typing.List[dict]]:
+        rows: typing.List[typing.List[dict]] = []
+        row: typing.List[dict] = []
+        for code, label in self._get_install_langs():
+            row.append(
+                {
+                    "text": label,
+                    "callback": self._etg_choose_lang,
+                    "args": (port, chat_id, code, note_key),
+                }
+            )
+            if len(row) == 2:
+                rows.append(row)
+                row = []
+        if row:
+            rows.append(row)
+        return rows
 
     @staticmethod
     def _exec_shell(args: typing.List[str]) -> typing.Tuple[int, str]:
@@ -1378,6 +1915,108 @@ class EtgBridgeMod(loader.Module):
             logs.append("ufw: install failed")
         return shutil.which("ufw") is not None
 
+    def _run_shell_with_fallback(
+        self,
+        args: typing.List[str],
+        logs: typing.List[str],
+        label: str,
+        ok_tokens: typing.Optional[typing.List[str]] = None,
+    ) -> bool:
+        def _attempt(use_sudo: bool) -> bool:
+            cmd = args
+            tag = "sudo" if use_sudo else "nosudo"
+            if use_sudo:
+                cmd = self._sudo_command(args, logs)
+                if not cmd:
+                    logs.append(f"{label} ({tag}): sudo unavailable")
+                    return False
+            code, out = self._exec_shell(cmd)
+            out_low = (out or "").lower()
+            if "password" in out_low or "no tty" in out_low:
+                logs.append(f"{label} ({tag}): sudo requires password")
+                return False
+            ok = code == 0
+            if ok_tokens:
+                ok = ok or any(token in out_low for token in ok_tokens)
+            logs.append(f"{label} ({tag}): {out if out else ('ok' if ok else 'failed')}")
+            return ok
+
+        if _attempt(True):
+            return True
+        return _attempt(False)
+
+    def _disable_iptables(self, logs: typing.List[str]) -> bool:
+        if self._is_windows():
+            logs.append("iptables: skip on Windows")
+            return True
+        ok_tokens = ["not loaded", "not-found", "not running", "could not be found"]
+        stop_ok = self._run_shell_with_fallback(
+            ["systemctl", "stop", "iptables"],
+            logs,
+            "iptables stop",
+            ok_tokens=ok_tokens,
+        )
+        disable_ok = self._run_shell_with_fallback(
+            ["systemctl", "disable", "iptables"],
+            logs,
+            "iptables disable",
+            ok_tokens=ok_tokens,
+        )
+        return stop_ok and disable_ok
+
+    def _ufw_allow_port(self, port: int, logs: typing.List[str]) -> bool:
+        if self._is_windows():
+            logs.append("ufw: not supported on Windows")
+            return True
+
+        ok_tokens = ["rule added", "added", "existing", "already", "skipping", "updated"]
+
+        def _attempt(use_sudo: bool) -> bool:
+            cmd = ["ufw", "allow", str(port)]
+            tag = "sudo" if use_sudo else "nosudo"
+            if use_sudo:
+                cmd = self._sudo_command(cmd, logs)
+                if not cmd:
+                    logs.append(f"ufw allow {port} ({tag}): sudo unavailable")
+                    return False
+            code, out = self._exec_shell(cmd)
+            out_low = (out or "").lower()
+            if "password" in out_low or "no tty" in out_low:
+                logs.append(f"ufw allow {port} ({tag}): sudo requires password")
+                return False
+            ok = code == 0 and any(token in out_low for token in ok_tokens)
+            logs.append(
+                f"ufw allow {port} ({tag}): {out if out else ('ok' if ok else 'failed')}"
+            )
+            return ok
+
+        if _attempt(True) or _attempt(False):
+            return True
+        if not shutil.which("ufw"):
+            logs.append("ufw: not installed, attempting install")
+            self._install_ufw(logs)
+        if _attempt(True) or _attempt(False):
+            return True
+        logs.append(f"ufw allow {port}: failed")
+        return False
+
+    @staticmethod
+    def _tcp_ping(host: str, port: int, timeout: float = 2.0) -> typing.Tuple[bool, int, str]:
+        start = time.time()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        try:
+            sock.connect((host, port))
+            ms = int((time.time() - start) * 1000)
+            return True, ms, ""
+        except Exception as exc:
+            return False, 0, str(exc)
+        finally:
+            try:
+                sock.close()
+            except Exception:
+                pass
+
     def _get_ufw_install_command(self) -> str:
         if self._is_windows():
             return ""
@@ -1399,22 +2038,107 @@ class EtgBridgeMod(loader.Module):
     def _get_ufw_open_command(port: int) -> str:
         return f"sudo ufw allow {port}"
 
-    def _build_post_install_message(self, port: int, logs: typing.List[str]) -> str:
-        lines = ["Всё настроено, установите библиотеки ниже!"]
+    def _build_post_install_message(
+        self,
+        port: int,
+        logs: typing.List[str],
+        lang: str,
+    ) -> str:
+        lines = [self._t(lang, "post_ok_title")]
         if self._is_windows():
             server_path = self._etg_server_path(self._etg_root())
-            lines.append("Windows: ufw не поддерживается.")
+            lines.append(self._t(lang, "post_win_note"))
             lines.append(
-                f'Открой порт: `netsh advfirewall firewall add rule name="ETG {port}" dir=in action=allow protocol=TCP localport={port}`'
+                self._t(
+                    lang,
+                    "post_open_port_win",
+                    cmd=(
+                        f'netsh advfirewall firewall add rule name="ETG {port}" '
+                        f"dir=in action=allow protocol=TCP localport={port}"
+                    ),
+                )
             )
-            lines.append(f'Запуск сервера: `python "{server_path}"`')
+            lines.append(
+                self._t(lang, "post_start_server", cmd=f'python "{server_path}"')
+            )
             return "\n".join(lines)
         install_cmd = self._get_ufw_install_command()
         if install_cmd:
-            lines.append(f"Установка ufw: `{install_cmd}`")
-        lines.append(f"Открой порт: `{self._get_ufw_open_command(port)}`")
+            lines.append(self._t(lang, "post_install_ufw", cmd=install_cmd))
+        lines.append(
+            self._t(lang, "post_open_port", cmd=self._get_ufw_open_command(port))
+        )
         if any("sudo requires password" in line for line in logs):
-            lines.append("sudo попросит пароль на вашем ПК.")
+            lines.append(self._t(lang, "sudo_password"))
+        return "\n".join(lines)
+
+    def _format_check_result(self, lang: str, ok: bool, ms: int) -> str:
+        label = self._t(lang, "port_check_ok") if ok else self._t(lang, "port_check_fail")
+        if ok and ms > 0:
+            return f"{label} {ms}ms"
+        return label
+
+    def _curl_health_cmd(self, scheme: str, host: str, port: int) -> str:
+        if scheme == "https":
+            return f"curl -k {scheme}://{host}:{port}/health"
+        return f"curl {scheme}://{host}:{port}/health"
+
+    def _build_manual_steps(
+        self,
+        port: int,
+        lang: str,
+        status: dict,
+        scheme: str,
+    ) -> str:
+        ext_status = self._format_check_result(
+            lang,
+            bool(status.get("external_ok")),
+            int(status.get("external_ms") or 0),
+        )
+        loc_status = self._format_check_result(
+            lang,
+            bool(status.get("local_ok")),
+            int(status.get("local_ms") or 0),
+        )
+        lines = [
+            self._t(lang, "manual_title"),
+            self._t(lang, "manual_hint"),
+            self._t(lang, "check_summary", ext=ext_status, loc=loc_status),
+        ]
+
+        if not self._is_windows():
+            lines.append(self._t(lang, "manual_step_iptables"))
+            lines.append("` .terminal sudo systemctl stop iptables`")
+            lines.append("` .terminal sudo systemctl disable iptables`")
+
+            install_cmd = self._get_ufw_install_command()
+            if install_cmd:
+                lines.append(self._t(lang, "manual_step_ufw_install"))
+                lines.append(f"` .terminal {install_cmd}`")
+
+            lines.append(self._t(lang, "manual_step_ufw_allow", port=port))
+            lines.append(f"` .terminal {self._get_ufw_open_command(port)}`")
+        else:
+            lines.append(self._t(lang, "manual_step_ufw_allow", port=port))
+            lines.append(
+                f'` .terminal netsh advfirewall firewall add rule name="ETG {port}" '
+                f"dir=in action=allow protocol=TCP localport={port}`"
+            )
+
+        server_path = self._etg_server_path(self._etg_root())
+        lines.append(self._t(lang, "manual_step_server"))
+        lines.append(f'` .terminal python "{server_path}"`')
+
+        lines.append(self._t(lang, "manual_step_check"))
+        external_ip = status.get("external_ip") or ""
+        local_ip = status.get("local_ip") or ""
+        if external_ip:
+            lines.append(
+                f"` .terminal {self._curl_health_cmd(scheme, external_ip, port)}`"
+            )
+        if local_ip and local_ip != external_ip:
+            lines.append(f"` .terminal {self._curl_health_cmd(scheme, local_ip, port)}`")
+        lines.append(self._t(lang, "manual_step_forward"))
         return "\n".join(lines)
 
     async def _send_install_result(
@@ -1436,20 +2160,8 @@ class EtgBridgeMod(loader.Module):
             await self._client.send_file(chat_id, mandre_file)
 
     def _allow_ports(self, ports: typing.List[int], logs: typing.List[str]) -> None:
-        if self._is_windows():
-            logs.append("ufw: not supported on Windows")
-            return
-        if not shutil.which("ufw"):
-            logs.append("ufw: not installed, attempting install")
-            if not self._install_ufw(logs):
-                logs.append("ufw: not installed, skip")
-                return
         for port in ports:
-            code, out = self._exec_shell(["ufw", "allow", str(port)])
-            if code == 0:
-                logs.append(f"ufw allow {port}: ok")
-            else:
-                logs.append(f"ufw allow {port}: {out}")
+            self._ufw_allow_port(port, logs)
 
     def _copy_etg_files(self, logs: typing.List[str]) -> typing.Dict[str, str]:
         root = self._etg_root()
@@ -1605,7 +2317,7 @@ class EtgBridgeMod(loader.Module):
             return False
         return bool(data.get("ok"))
 
-    def _run_install(self, port: int) -> typing.Tuple[typing.List[str], str, str]:
+    def _run_install(self, port: int) -> typing.Tuple[typing.List[str], str, str, dict]:
         logs: typing.List[str] = []
         root = self._etg_root()
         os.makedirs(root, exist_ok=True)
@@ -1617,7 +2329,8 @@ class EtgBridgeMod(loader.Module):
         self._ensure_etg_service(root, logs)
 
         copied = self._copy_etg_files(logs)
-        self._allow_ports([int(self.config["listen_port"])], logs)
+        iptables_ok = self._disable_iptables(logs)
+        ufw_ok = self._ufw_allow_port(int(self.config["listen_port"]), logs)
         self._check_local_health(logs)
 
         external_ip = self._get_external_ip(logs)
@@ -1626,7 +2339,30 @@ class EtgBridgeMod(loader.Module):
             logs.append(
                 f"LAN IP: {local_ip}. Внешний IP отличается — нужен проброс порта {self.config['listen_port']}."
             )
-        host = external_ip or self.config["listen_host"]
+
+        ext_ok = False
+        ext_ms = 0
+        ext_err = ""
+        loc_ok = False
+        loc_ms = 0
+        loc_err = ""
+        if external_ip:
+            ext_ok, ext_ms, ext_err = self._tcp_ping(external_ip, port)
+            if ext_ok:
+                logs.append(f"port check external {external_ip}:{port}: ok {ext_ms}ms")
+            else:
+                logs.append(f"port check external {external_ip}:{port}: fail {ext_err}")
+        else:
+            logs.append("external ip not detected")
+
+        if not ext_ok and local_ip:
+            loc_ok, loc_ms, loc_err = self._tcp_ping(local_ip, port)
+            if loc_ok:
+                logs.append(f"port check local {local_ip}:{port}: ok {loc_ms}ms")
+            else:
+                logs.append(f"port check local {local_ip}:{port}: fail {loc_err}")
+
+        host = external_ip or local_ip or self.config["listen_host"]
         host_url = host
         if ":" in host and not host.startswith("["):
             host_url = f"[{host}]"
@@ -1671,7 +2407,20 @@ class EtgBridgeMod(loader.Module):
         mandre_file = copied.get("mandre_lib.plugin") or os.path.join(
             release_dir, "mandre_lib.plugin"
         )
-        return log_lines, etg_file, mandre_file
+        status = {
+            "iptables_ok": iptables_ok,
+            "ufw_ok": ufw_ok,
+            "external_ok": ext_ok,
+            "external_ms": ext_ms,
+            "external_err": ext_err,
+            "local_ok": loc_ok,
+            "local_ms": loc_ms,
+            "local_err": loc_err,
+            "external_ip": external_ip,
+            "local_ip": local_ip,
+        }
+        status["ok"] = bool(ufw_ok and ext_ok)
+        return log_lines, etg_file, mandre_file, status
 
     def _run_uninstall(self) -> typing.List[str]:
         logs: typing.List[str] = []
@@ -1713,31 +2462,74 @@ class EtgBridgeMod(loader.Module):
             mandre_file = ""
         return etg_file, mandre_file
 
-    async def _etg_confirm(self, call: InlineCall, port: int, chat_id: int):
-        await call.edit(f"Устанавливаю ETG на порт {port}...")
+    async def _etg_choose_lang(
+        self,
+        call: InlineCall,
+        port: int,
+        chat_id: int,
+        lang: str,
+        note_key: str,
+    ):
+        text = self._t(lang, "confirm_install", port=port)
+        if note_key:
+            text = f"{text}\n{self._t(lang, note_key, port=port)}"
+        await call.edit(
+            text,
+            reply_markup=[
+                [
+                    {
+                        "text": self._t(lang, "btn_install"),
+                        "callback": self._etg_confirm,
+                        "args": (port, chat_id, lang),
+                    },
+                    {
+                        "text": self._t(lang, "btn_cancel"),
+                        "callback": self._etg_cancel,
+                        "args": (lang,),
+                    },
+                ]
+            ],
+        )
+
+    async def _etg_confirm(self, call: InlineCall, port: int, chat_id: int, lang: str):
+        await call.edit(self._t(lang, "installing", port=port))
         try:
-            _log_lines, etg_file, mandre_file = await asyncio.to_thread(
+            _log_lines, etg_file, mandre_file, status = await asyncio.to_thread(
                 self._run_install, port
             )
         except Exception as exc:
             self._set_setup_log([f"install failed: {exc}"])
-            await call.edit("Ошибка установки. Логи: `.etg log`")
+            await call.edit(self._t(lang, "install_error"))
             return
-        await call.edit("Установка завершена. Сообщение с командами отправлено.")
+        if not status.get("ok"):
+            await call.edit(self._t(lang, "install_done_with_errors"))
+            log_text = "\n".join(_log_lines) if _log_lines else "no logs"
+            await self._send_text_or_file_chat(
+                chat_id,
+                log_text,
+                "etg_setup_log.txt",
+                "ETG logs",
+            )
+            scheme = "https" if self.config["tls_enabled"] else "http"
+            manual_text = self._build_manual_steps(port, lang, status, scheme)
+            await self._client.send_message(chat_id, manual_text)
+            return
+
+        await call.edit(self._t(lang, "install_done"))
         if not (etg_file and os.path.isfile(etg_file)):
             etg_file, _ = self._ensure_release_files([])
         if not (mandre_file and os.path.isfile(mandre_file)):
             _, mandre_file = self._ensure_release_files([])
         await self._send_install_result(
             message=None,
-            text=self._build_post_install_message(port, _log_lines),
+            text=self._build_post_install_message(port, _log_lines, lang),
             etg_file=etg_file,
             mandre_file=mandre_file,
             chat_id=chat_id,
         )
 
-    async def _etg_cancel(self, call: InlineCall):
-        await call.edit("Установка отменена.")
+    async def _etg_cancel(self, call: InlineCall, lang: str):
+        await call.edit(self._t(lang, "install_cancel"))
 
     @loader.command(ru_doc="Удалить настройки ETG сервера")
     async def unetg(self, message: Message):
@@ -1747,32 +2539,7 @@ class EtgBridgeMod(loader.Module):
 
     @loader.command(ru_doc="Переустановить ETG сервер")
     async def reinetg(self, message: Message):
-        args = utils.get_args_raw(message).strip()
-        if args:
-            port = self._parse_port(args)
-            if port is None:
-                await utils.answer(message, "Нужен порт 1-65535. Пример: `.reinetg 8955`")
-                return
-        else:
-            port = int(self.config["listen_port"])
-        await utils.answer(message, f"Переустанавливаю ETG на порт {port}...")
-        try:
-            _log_lines, etg_file, mandre_file = await asyncio.to_thread(
-                self._run_install, port
-            )
-        except Exception as exc:
-            await utils.answer(message, f"Ошибка переустановки: {exc}")
-            return
-        if not (etg_file and os.path.isfile(etg_file)):
-            etg_file, _ = self._ensure_release_files([])
-        if not (mandre_file and os.path.isfile(mandre_file)):
-            _, mandre_file = self._ensure_release_files([])
-        await self._send_install_result(
-            message,
-            self._build_post_install_message(port, _log_lines),
-            etg_file,
-            mandre_file,
-        )
+        await self.etg(message)
 
     @loader.command(ru_doc="ETG bridge control")
     async def etg(self, message: Message):
@@ -1824,43 +2591,29 @@ class EtgBridgeMod(loader.Module):
             return
 
         if not args:
-            await utils.answer(message, "Укажите порт: `.etg 8955`")
+            await utils.answer(message, self._t("ru", "port_prompt"))
             return
 
         port = self._parse_port(args)
         if port is None:
-            await utils.answer(message, "Нужен порт 1-65535. Пример: `.etg 8955`")
+            await utils.answer(message, self._t("ru", "port_invalid"))
             return
 
         free, error = self._port_is_free(port)
-        note = ""
+        note_key = ""
         if not free:
             if self._probe_health(port):
-                note = f"\nПорт {port} уже занят ETG и будет использован."
+                note_key = "confirm_note_existing"
             else:
-                await utils.answer(message, f"Порт {port} занят: {error}")
+                await utils.answer(message, self._t("ru", "port_busy", port=port, error=error))
                 return
 
-        text = f"Установить ETG на порт {port}?"
-        if note:
-            text += note
-
+        text = f"{self._t('ru', 'choose_lang_title')} / {self._t('en', 'choose_lang_title')}\n"
+        text += f"{self._t('ru', 'choose_lang_hint')} / {self._t('en', 'choose_lang_hint')}"
         await self.inline.form(
             message=message,
             text=text,
-            reply_markup=[
-                [
-                    {
-                        "text": "✅ Установить",
-                        "callback": self._etg_confirm,
-                        "args": (port, utils.get_chat_id(message)),
-                    },
-                    {
-                        "text": "❌ Отмена",
-                        "callback": self._etg_cancel,
-                    },
-                ]
-            ],
+            reply_markup=self._build_lang_keyboard(port, utils.get_chat_id(message), note_key),
             force_me=True,
         )
         return
