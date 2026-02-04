@@ -24,7 +24,7 @@ https://sosiskibot.ru/etg/release/mandre_lib.plugin
 3) Запусти установку:
 
 ```
-.etg 8955
+.etg 9678
 ```
 
 ## Команды

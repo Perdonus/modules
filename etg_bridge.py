@@ -587,7 +587,7 @@ class EtgBridgeMod(loader.Module):
             ),
             loader.ConfigValue(
                 "listen_port",
-                8955,
+                9678,
                 "Port to listen for ETG sync",
                 validator=loader.validators.Integer(minimum=1, maximum=65535),
             ),
@@ -1528,6 +1528,21 @@ class EtgBridgeMod(loader.Module):
         self._set_setup_log(logs)
         return logs
 
+    def _ensure_release_files(self, logs: typing.List[str]) -> typing.Tuple[str, str]:
+        root = self._etg_root()
+        release_dir = os.path.join(root, "release")
+        etg_file = os.path.join(release_dir, "EtgBridge.plugin")
+        mandre_file = os.path.join(release_dir, "mandre_lib.plugin")
+        if not os.path.isfile(etg_file) or not os.path.isfile(mandre_file):
+            self._copy_etg_files(logs)
+        if not os.path.isfile(etg_file):
+            logs.append("release file missing: EtgBridge.plugin")
+            etg_file = ""
+        if not os.path.isfile(mandre_file):
+            logs.append("release file missing: mandre_lib.plugin")
+            mandre_file = ""
+        return etg_file, mandre_file
+
     async def _etg_confirm(self, call: InlineCall, port: int, chat_id: int):
         await call.edit(f"Устанавливаю ETG на порт {port}...")
         try:
@@ -1540,9 +1555,13 @@ class EtgBridgeMod(loader.Module):
             return
 
         await call.edit("Всё настроено, установите библиотеки ниже!")
-        if etg_file and os.path.isfile(etg_file):
+        if not (etg_file and os.path.isfile(etg_file)):
+            etg_file, _ = self._ensure_release_files([])
+        if not (mandre_file and os.path.isfile(mandre_file)):
+            _, mandre_file = self._ensure_release_files([])
+        if etg_file:
             await self._client.send_file(chat_id, etg_file)
-        if mandre_file and os.path.isfile(mandre_file):
+        if mandre_file:
             await self._client.send_file(chat_id, mandre_file)
 
     async def _etg_cancel(self, call: InlineCall):
@@ -1573,9 +1592,13 @@ class EtgBridgeMod(loader.Module):
             await utils.answer(message, f"Ошибка переустановки: {exc}")
             return
         await utils.answer(message, "Всё настроено, установите библиотеки ниже!")
-        if etg_file and os.path.isfile(etg_file):
+        if not (etg_file and os.path.isfile(etg_file)):
+            etg_file, _ = self._ensure_release_files([])
+        if not (mandre_file and os.path.isfile(mandre_file)):
+            _, mandre_file = self._ensure_release_files([])
+        if etg_file:
             await utils.answer_file(message, etg_file)
-        if mandre_file and os.path.isfile(mandre_file):
+        if mandre_file:
             await utils.answer_file(message, mandre_file)
 
     @loader.command(ru_doc="ETG bridge control")
